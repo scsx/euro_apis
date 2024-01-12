@@ -1,0 +1,15 @@
+$region: #8bc98b;
+
+.portugal_svg {
+  text-align: center;
+
+  path {
+    fill: $region;
+    stroke: darken($region, 30%);
+
+    &:hover {
+      fill: lighten($region, 10%);
+      cursor: pointer;
+    }
+  }
+}

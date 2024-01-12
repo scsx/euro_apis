@@ -1,0 +1,14 @@
+.sitepage.sitepage--hp {
+  position: relative;
+
+  h1 {
+    position: absolute;
+    font-size: 5.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    text-align: center;
+    line-height: .8;
+  }
+}
