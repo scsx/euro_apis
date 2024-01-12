@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import PrettyNumber from '@/components/PrettyNumber'
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 export default function NotFound() {
@@ -8,7 +7,7 @@ export default function NotFound() {
       <div className='container'>
         <h1>Página não encontrada</h1>
         <div className='graphics404'>
-          <PrettyNumber number={404} cssclass='d-inline-block mr-3' />
+          404
           <span className='icon'>
             <IoIosCloseCircleOutline />
           </span>
