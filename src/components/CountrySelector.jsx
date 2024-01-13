@@ -3,25 +3,26 @@ import { useDispatch, useSelector } from 'react-redux'
 import { chooseCountry } from '../redux/actions/chooseCountry'
 
 const CountrySelector = () => {
-  const selectedCountry = useSelector(
-    (state) => state.countryReducer.selectedCountry
-  )
+  // Para ver o state actualmente:
+  /*
+  const state = useSelector((state) => state)
+  console.log('Current State:', state)
+  */
 
-  
-
+  const selectedCountry = useSelector((state) => state.country.selectedCountry)
   const dispatch = useDispatch()
 
   const countryList = ['PT', 'UK', 'US']
 
   const handleCountryChange = (e) => {
-    const selectedCountry = e.target.value
-    dispatch(chooseCountry(selectedCountry))
+    const newCountry = e.target.value
+    dispatch(chooseCountry(newCountry))
   }
 
   return (
     <div>
       <h2>Choose a Country:</h2>
-      {/* <select value={selectedCountry} onChange={handleCountryChange}>
+      <select value={selectedCountry} onChange={handleCountryChange}>
         <option value=''>Select Country</option>
         {countryList.map((country) => (
           <option key={country} value={country}>
@@ -29,7 +30,7 @@ const CountrySelector = () => {
           </option>
         ))}
       </select>
-      {selectedCountry && <p>Selected Country: {selectedCountry}</p>} */}
+      {selectedCountry && <p>Selected Country: {selectedCountry}</p>}
     </div>
   )
 }
