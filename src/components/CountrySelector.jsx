@@ -15,8 +15,8 @@ const CountrySelector = () => {
   const countryList = ['PT', 'UK', 'US']
 
   const handleCountryChange = (e) => {
-    const selectedCountry = e.target.value
-    dispatch(chooseCountry(selectedCountry))
+    const newCountry = e.target.value
+    dispatch(chooseCountry(newCountry))
   }
 
   return (

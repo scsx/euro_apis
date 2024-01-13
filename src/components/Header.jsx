@@ -1,10 +1,10 @@
-import React from 'react'
+import CountrySelector from "./CountrySelector"
 
 const Header = () => {
 
   return (
     <div>
-      <div>{/* Your JSX here */}</div>
+      <CountrySelector />
     </div>
   )
 }
