@@ -1,1 +1,1 @@
-export const YOUR_ACTION_TYPE = 'YOUR_ACTION_TYPE'
+export const CHOOSE_COUNTRY = 'CHOOSE_COUNTRY'
