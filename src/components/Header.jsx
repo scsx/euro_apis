@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import { Link } from "react-router-dom";
 import './Header.scss'
 import CountrySelector from './CountrySelector'
 
@@ -35,13 +36,9 @@ const Header = () => {
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link as='span'>
-              Municípios
+              <Link to='/countries'>Countries</Link>
+              
             </Nav.Link>
-            <NavDropdown title='Extra'>
-              <NavDropdown.Item href='/extra/poder-de-compra'>
-                Poder de compra
-              </NavDropdown.Item>
-            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className='justify-content-end'>
