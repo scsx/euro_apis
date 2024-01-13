@@ -1,0 +1,113 @@
+@font-face {
+  font-family: 'Restora';
+  src: local('Restora'), url('../fonts/Restora.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'RestoraBold';
+  src: local('RestoraBold'), url('../fonts/RestoraBold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: local('Poppins-Regular'),
+    url('../fonts/Poppins-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'PoppinsSemiBold';
+  src: local('Poppins-SemiBold'),
+    url('../fonts/Poppins-SemiBold.otf') format('opentype');
+}
+
+* {
+  font-family: 'Poppins';
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  border-radius: 0;
+  background-color: $bodybg;
+}
+
+body {
+  color: $bodycolor;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
+  font-family: 'RestoraBold';
+}
+
+a {
+  color: var(--bs-primary);
+  text-decoration: none;
+}
+
+b {
+  font-family: 'PoppinsSemiBold';
+}
+
+span.divider {
+  margin: 0 1rem;
+}
+
+.graphics404 {
+  font-size: 5rem;
+  margin-bottom: 5rem;
+  opacity: 0.5;
+}
+
+// Common Page
+.sitepage {
+  padding: 3rem 0;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+
+    small {
+      font-size: 1.5rem;
+    }
+  }
+
+  .sitepage-hero {
+    position: relative;
+    min-height: 50%;
+    padding-top: 3rem;
+
+    .hero__Img {
+      position: relative !important;
+      width: 100px !important;
+      height: auto !important;
+      margin-left: 0.5rem;
+    }
+
+    h1 {
+      font-size: 4rem;
+      display: inline-block;
+      line-height: 1;
+      padding: 1rem;
+      margin-bottom: 0;
+    }
+
+    .hero__Desc {
+      font-weight: 700;
+      background-color: $bodybg;
+      display: block;
+      padding: 1rem;
+      max-width: 50%;
+    }
+  }
+
+}
