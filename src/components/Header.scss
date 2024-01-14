@@ -13,10 +13,11 @@
     margin-right: 0;
     border-right: 1px solid $bordercolor;
 
-    span.euro {
+    .euro {
       padding-left: 0.5rem;
       padding-right: 0.5rem;
       border-right: 1px solid $bordercolor;
+      color: var(--bs-navbar-brand-color);
 
       svg {
         transform: scale(1.75);
@@ -24,11 +25,12 @@
       }
     }
 
-    span.nome {
+    .nome {
       font-size: 1.1rem;
       padding: 1rem;
       font-family: 'RestoraBold';
       line-height: 1;
+      color: var(--bs-navbar-brand-color);
     }
   }
 

@@ -16,11 +16,14 @@ const Header = () => {
       expand='lg'
       className='header bg-body-tertiary justify-content-between'>
       <Container>
-        <Navbar.Brand href='/'>
-          <span className='euro'>
+        <Navbar.Brand as='span'>
+          <NavLink className='euro' to='/'>
+            {' '}
             <HiOutlineBuildingLibrary />
-          </span>
-          <span className='nome'>euro_apis</span>
+          </NavLink>
+          <NavLink className='nome' to='/'>
+            euro_apis
+          </NavLink>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='maincollapse' />
         <Navbar.Collapse id='maincollapse'>
@@ -29,8 +32,8 @@ const Header = () => {
               <NavLink to='/countries'>Countries</NavLink>
             </Nav.Link>
             <NavDropdown title='Other'>
-              <NavDropdown.Item href='/fullpage'>
-                Fullpage
+              <NavDropdown.Item as='span'>
+                <NavLink to='/fullpage'>Fullpage</NavLink>
               </NavDropdown.Item>
               <NavDropdown.Item href='/distritos/Porto'>Porto</NavDropdown.Item>
               <NavDropdown.Item href='/distritos'>
