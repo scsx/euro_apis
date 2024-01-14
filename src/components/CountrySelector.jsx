@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { chooseCountry } from '../redux/actions/chooseCountry'
+import './CountrySelector.scss'
 
 const CountrySelector = () => {
   // Para ver o state actualmente:
@@ -12,7 +13,7 @@ const CountrySelector = () => {
   const selectedCountry = useSelector((state) => state.country.selectedCountry)
   const dispatch = useDispatch()
 
-  const countryList = ['PT', 'UK', 'US']
+  const countryList = ['UK', 'US', 'PT']
 
   const handleCountryChange = (e) => {
     const newCountry = e.target.value
@@ -20,10 +21,9 @@ const CountrySelector = () => {
   }
 
   return (
-    <div>
-      <h2>Choose a Country:</h2>
+    <div className='selectcountry'>
       <select value={selectedCountry} onChange={handleCountryChange}>
-        <option value=''>Select Country</option>
+        <option value=''>None</option>
         {countryList.map((country) => (
           <option key={country} value={country}>
             {country}

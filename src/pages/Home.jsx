@@ -1,8 +1,10 @@
-import React from 'react'
+import Page from "../hooks/Page"
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <Page classNames='home'>
+      Home
+    </Page>
   )
 }
 

@@ -42,6 +42,10 @@
       color: var(--bs-navbar-color);
       font-family: 'PoppinsSemiBold';
       color: var(--bs-navbar-brand-color);
+
+      &.active {
+        color: $primary;
+      }
     }
   }
 

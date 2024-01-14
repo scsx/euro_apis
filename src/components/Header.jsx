@@ -1,9 +1,12 @@
 import { createContext } from 'react'
+
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import { Link } from "react-router-dom";
+import { NavLink } from 'react-router-dom'
+import { HiOutlineBuildingLibrary } from 'react-icons/hi2'
+
 import './Header.scss'
 import CountrySelector from './CountrySelector'
 
@@ -15,9 +18,9 @@ const Header = () => {
       <Container>
         <Navbar.Brand href='/'>
           <span className='euro'>
-            Logo
+            <HiOutlineBuildingLibrary />
           </span>
-          <span className='nome'>geoapi.pt</span>
+          <span className='nome'>euro_apis</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='maincollapse' />
         <Navbar.Collapse id='maincollapse'>
@@ -36,8 +39,7 @@ const Header = () => {
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link as='span'>
-              <Link to='/countries'>Countries</Link>
-              
+              <NavLink to='/countries'>Countries</NavLink>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
