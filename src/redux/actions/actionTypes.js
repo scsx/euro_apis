@@ -1,1 +1,2 @@
 export const CHOOSE_COUNTRY = 'CHOOSE_COUNTRY'
+export const GET_COUNTRIES = 'GET_COUNTRIES'
