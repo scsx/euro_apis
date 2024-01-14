@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes'
 
 const initialState = {
-  selectedCountry: 'PT'
+  selectedCountry: 'None'
 }
 
 const countryReducer = (state = initialState, action) => {
