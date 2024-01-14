@@ -1,9 +1,10 @@
 import Page from "../hooks/Page"
+import './Page.scss'
 
 const Home = () => {
   return (
     <Page classes='home'>
-      Home
+      <h1>Home</h1>
     </Page>
   )
 }
