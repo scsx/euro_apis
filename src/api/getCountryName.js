@@ -1,7 +1,10 @@
 import countries from '../data/countriesDB.json'
 
-const getCountries = () => {
-  return countries
+const getCountryName = (code) => {
+  let filtered = countries.filter((country) => country.code == code)
+
+  console.log(filtered)
+  return filtered[0].name
 }
 
-export default getCountries
+export default getCountryName
