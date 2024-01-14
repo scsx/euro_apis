@@ -1,8 +1,10 @@
-import React from 'react'
+import Page from "../hooks/Page"
 
 const Countries = () => {
   return (
-    <div>Countries</div>
+    <Page classes='countries'>
+      <h1>Countries</h1>
+    </Page>
   )
 }
 

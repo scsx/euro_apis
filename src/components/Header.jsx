@@ -25,9 +25,12 @@ const Header = () => {
         <Navbar.Toggle aria-controls='maincollapse' />
         <Navbar.Collapse id='maincollapse'>
           <Nav className='me-auto'>
-            <NavDropdown title='Distritos'>
-              <NavDropdown.Item href='/distritos/Lisboa'>
-                Lisboa
+            <Nav.Link as='span'>
+              <NavLink to='/countries'>Countries</NavLink>
+            </Nav.Link>
+            <NavDropdown title='Other'>
+              <NavDropdown.Item href='/fullpage'>
+                Fullpage
               </NavDropdown.Item>
               <NavDropdown.Item href='/distritos/Porto'>Porto</NavDropdown.Item>
               <NavDropdown.Item href='/distritos'>
@@ -38,9 +41,6 @@ const Header = () => {
                 Demografia
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link as='span'>
-              <NavLink to='/countries'>Countries</NavLink>
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className='justify-content-end'>
