@@ -15,7 +15,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/countries' element={<Outlet />}>
           <Route index element={<Countries />} />
-          <Route path=":country" element={<Country/>} />
+          <Route path=":countryId" element={<Country/>} />
         </Route>
         <Route path='/fullpage' element={<FullPage />} />
         {/* 404 page */}
