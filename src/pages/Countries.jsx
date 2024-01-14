@@ -6,7 +6,9 @@ const Countries = () => {
   return (
     <Page classes='countries'>
       <h1>Countries</h1>
-      <Link to="country">A country</Link>
+      <Link to='Portugal'>Portugal</Link>
+      <br />
+      <Link to='France'>France</Link>
 
       {/* <Outlet /> */}
     </Page>

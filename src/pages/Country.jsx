@@ -1,10 +1,15 @@
-import React from 'react'
+import { useParams } from 'react-router-dom'
+import Page from '../hooks/Page'
 
 const Country = () => {
+  const { country } = useParams()
+
+
+  console.log(country)
   return (
-    <div>
-      <h1>Country detail</h1>
-    </div>
+    <Page classes='country'>
+      <h1>{ country }</h1>
+    </Page>
   )
 }
 

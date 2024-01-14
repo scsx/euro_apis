@@ -13,14 +13,9 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-
-        {/* <Route path="/users">
-    <Route index element={<Users />} />        // "/users"
-    <Route path=":id" element={<UserPage/>} /> // "/users/:id"
-  </Route> */}
         <Route path='/countries' element={<Outlet />}>
           <Route index element={<Countries />} />
-          <Route path=":id" element={<Country/>} />
+          <Route path=":country" element={<Country/>} />
         </Route>
         <Route path='/fullpage' element={<FullPage />} />
         {/* 404 page */}
