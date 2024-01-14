@@ -4,16 +4,14 @@ import { chooseCountry } from '../redux/actions/chooseCountry'
 import './CountrySelector.scss'
 
 const CountrySelector = () => {
-  // Para ver o state actualmente:
-  /*
   const state = useSelector((state) => state)
-  console.log('Current State:', state)
-  */
-
+  // Para ver o state actualmente:
+  // console.log('Current State:', state)
+  
   const selectedCountry = useSelector((state) => state.country.selectedCountry)
   const dispatch = useDispatch()
 
-  const countryList = ['UK', 'US', 'PT']
+  const countryList = state.allCountries.allCountries
 
   const handleCountryChange = (e) => {
     const newCountry = e.target.value
@@ -25,8 +23,8 @@ const CountrySelector = () => {
       <select value={selectedCountry} onChange={handleCountryChange}>
         <option value=''>None</option>
         {countryList.map((country) => (
-          <option key={country} value={country}>
-            {country}
+          <option key={country.code} value={country.code}>
+            {country.name}
           </option>
         ))}
       </select>

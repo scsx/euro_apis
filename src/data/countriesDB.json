@@ -132,11 +132,11 @@
     "code": "MC"
   },
   {
-    "name": "Moldova, Republic of",
+    "name": "Moldova",
     "code": "MD"
   },
   {
-    "name": "Macedonia, The Former Yugoslav Republic of",
+    "name": "Macedonia",
     "code": "MK"
   },
   {
@@ -164,7 +164,7 @@
     "code": "RO"
   },
   {
-    "name": "Russian Federation",
+    "name": "Russia",
     "code": "RU"
   },
   {
@@ -192,7 +192,7 @@
     "code": "UA"
   },
   {
-    "name": "Holy See (Vatican City State)",
+    "name": "Vatican",
     "code": "VA"
   }
 ]
