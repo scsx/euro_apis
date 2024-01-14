@@ -1,3 +1,17 @@
 .selectcountry {
-    color: red;
+  #countrySelectorList {
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  .dropdown-menu {
+    margin-top: 40px !important;
+    right: 0 !important;
+    columns: 3;
+
+    .dropdown-item {
+      font-size: 14px;
+      padding: 3px 10px;
+    }
+  }
 }
