@@ -32,7 +32,9 @@ const CountrySelector = () => {
         drop='start'
         size='sm'
         title={btnText}>
-        <Dropdown.Item as='button'>None</Dropdown.Item>
+        <Dropdown.Item as='button' onClick={() => handleCountryChange('None')}>
+          None
+        </Dropdown.Item>
 
         {countryList.map((country) => (
           <Dropdown.Item
