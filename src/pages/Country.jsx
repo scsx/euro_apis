@@ -5,6 +5,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Page from '../hooks/Page'
 import Loading from '../components/Loading'
+import { ErrorBoundary } from 'react-error-boundary'
+import ErrorBoundaryComponent from '../components/ErrorBoundaryComponent'
 import CountryComparison from './CountryComparison'
 import './Country.scss'
 
@@ -28,15 +30,21 @@ const Country = () => {
 
         {countryToCompare && (
           <Col xs={4}>
-            <CountryComparison
-              code={countryId}
-              name={countryVisibleName}
-              selectedCountry={selectedCountry}
-              getVisibleName={getCountryName}
-            />
+            <ErrorBoundary
+              FallbackComponent={ErrorBoundaryComponent}
+              onReset={() => {
+                // reset the state of your app here
+              }}
+              resetKeys={['someKey']}>
+              <CountryComparison
+                code={countryId}
+                name={countryVisibleName}
+                selectedCountry={selectedCountry}
+                getVisibleName={getCountryName}
+              />
+            </ErrorBoundary>
           </Col>
         )}
-
       </Row>
     </Page>
   )
