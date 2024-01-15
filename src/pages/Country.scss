@@ -1,15 +1,56 @@
+@import '../styles/custom-vars';
+
 .page__country {
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
   .comparison {
     background-color: white;
     padding: 1rem;
-    border: 1px solid gray;
+    border: 1px solid $bordercolor2;
   }
 
   // COUNTRY DETAIL
   .countrydetails {
-    img {
-      max-width: 100%;
-      max-height: 300px;
+    .images {
+      text-align: center;
+      padding-left: 1rem;
+      padding-right: 2rem;
+      border-right: 1px solid $bordercolor2;
+
+      img {
+        display: block;
+        max-width: 100%;
+        max-height: 200px;
+        margin: 0 auto 2rem auto;
+      }
+    }
+
+    .maindetails {
+      padding-left: 1rem;
+      padding-right: 2rem;
+
+      .hstack {
+        align-items: flex-end;
+        border-bottom: 1px solid $bordercolor2;
+
+        .key {
+          font-size: 1.5rem;
+          padding-bottom: 6px;
+        }
+
+        .value {
+          font-size: 3rem;
+          font-family: 'RestoraBold';
+          color: dodgerblue;
+
+          small {
+            font-size: 50%;
+          }
+        }
+      }
     }
   }
 }

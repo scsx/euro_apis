@@ -1,22 +1,41 @@
+import Table from 'react-bootstrap/Table'
+
 const CountryComparison = ({ code, name, selectedCountry, getVisibleName }) => {
   const selectedCountryVisibleName = getVisibleName(selectedCountry)
   return (
     <div className='comparison'>
-      <h3>Comparison</h3>
       <p>
-        <b>
-          {name} ({code})
-        </b>{' '}
-        vs{' '}
-        <b>
-          {selectedCountryVisibleName} ({selectedCountry})
-        </b>
+        {name} <small>({code})</small>
+        <b> vs </b>
+        {selectedCountryVisibleName} <small>({selectedCountry})</small>
       </p>
-      <h5>
-        {code} vs {selectedCountry}
-      </h5>
-      <br />
-      {name}
+
+      <Table bordered hover>
+        <thead>
+          <tr>
+            <th></th>
+            <th>PT</th>
+            <th>NL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Area</td>
+            <td>41 850km²</td>
+            <td>71 850km²</td>
+          </tr>
+          <tr>
+            <td>Population</td>
+            <td>16 655 799</td>
+            <td>1 655 799</td>
+          </tr>
+          <tr>
+            <td>tld</td>
+            <td>.nl</td>
+            <td>.pt</td>
+          </tr>
+        </tbody>
+      </Table>
     </div>
   )
 }

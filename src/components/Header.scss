@@ -4,19 +4,19 @@
 .header.navbar {
   padding-top: 0;
   padding-bottom: 0;
-  border-bottom: 1px solid $bordercolor;
+  border-bottom: 1px solid $bordercolor1;
 
   .navbar-brand {
     display: flex;
     padding-top: 0;
     padding-bottom: 0;
     margin-right: 0;
-    border-right: 1px solid $bordercolor;
+    border-right: 1px solid $bordercolor1;
 
     .euro {
       padding-left: 0.5rem;
       padding-right: 0.5rem;
-      border-right: 1px solid $bordercolor;
+      border-right: 1px solid $bordercolor1;
       color: var(--bs-navbar-brand-color);
 
       svg {
@@ -37,7 +37,7 @@
   .nav-link {
     padding: 0.8rem 1rem !important;
     font-family: 'PoppinsSemiBold';
-    border-right: 1px solid $bordercolor;
+    border-right: 1px solid $bordercolor1;
     color: var(--bs-navbar-brand-color);
 
     a {
@@ -55,6 +55,6 @@
     margin-top: 0;
     left: -1px;
     border-radius: 0;
-    border-color: $bordercolor;
+    border-color: $bordercolor1;
   }
 }

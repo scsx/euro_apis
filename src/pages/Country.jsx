@@ -1,7 +1,8 @@
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import getCountryName from '../api/getCountryName'
+import { log } from '../utils/utils'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Page from '../hooks/Page'
@@ -34,13 +35,20 @@ const Country = () => {
     countryToCompare = true
   }
 
-  console.log(countryData)
+  log(countryData)
   
   return (
-    <Page classes='country'>
-      <h1>{countryVisibleName}</h1>
+    <Page classes='country' fullWidth={false}>
       <Row>
-        <Col xs={countryToCompare ? 8 : 12}>
+        <Col xs={2}>
+        </Col>
+        <Col xs={10}>
+          <h1>{countryVisibleName}</h1>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs={8}>
           {Object.keys(countryData).length === 0 && <Loading />}
           {Object.keys(countryData).length > 0 && (
             <ErrorBoundary
@@ -56,8 +64,8 @@ const Country = () => {
           )}
         </Col>
 
-        {countryToCompare && (
           <Col xs={4}>
+        {countryToCompare && (
             <ErrorBoundary
               FallbackComponent={ErrorBoundaryComponent}
               onReset={() => {
@@ -71,8 +79,8 @@ const Country = () => {
                 getVisibleName={getCountryName}
               />
             </ErrorBoundary>
-          </Col>
         )}
+          </Col>
       </Row>
     </Page>
   )

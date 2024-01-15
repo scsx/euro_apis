@@ -6,7 +6,7 @@ const Page = ({
 }) => {
   return (
     <div className={`page ${noVertPadding ? '' : 'my-5'} page__${classes}`}>
-      <div className={fullWidth ? ' ' : 'container '}>{children}</div>
+      <div className={fullWidth ? 'container-fluid' : 'container '}>{children}</div>
     </div>
   )
 }
