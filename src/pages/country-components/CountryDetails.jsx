@@ -24,7 +24,9 @@ const CountryDetails = ({ countryData }) => {
             </Stack>
             <Stack direction='horizontal' gap={3}>
               <div className='key'>Population</div>
-              <div className='value ms-auto'>{toLoc(countryData.population)}</div>
+              <div className='value ms-auto'>
+                {toLoc(countryData.population)}
+              </div>
             </Stack>
             <Stack direction='horizontal' gap={3}>
               <div className='key'>Capital</div>
@@ -34,6 +36,14 @@ const CountryDetails = ({ countryData }) => {
               <div className='key'>tld</div>
               <div className='value ms-auto'>{countryData.tld[0]}</div>
             </Stack>
+            {countryData.borders?.length > 0 && (
+              <Stack direction='horizontal' gap={3}>
+                <div className='key'>Borders</div>
+                <div className='value ms-auto'>
+                  {countryData.borders.length}
+                </div>
+              </Stack>
+            )}
           </div>
         </Col>
       </Row>
