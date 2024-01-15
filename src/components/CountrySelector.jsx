@@ -1,4 +1,3 @@
-import React from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,13 +6,12 @@ import './CountrySelector.scss'
 
 const CountrySelector = () => {
   // State actualmente:
-  const state = useSelector((state) => state)
-  // console.log('Current State:', state)
+  // const state = useSelector((state) => state)
 
   const selectedCountry = useSelector((state) => state.country.selectedCountry)
   const dispatch = useDispatch()
-
-  const countryList = state.allCountries.allCountries
+  const countryList = useSelector((state) => state.allCountries.allCountries)
+ // const countryList = state.allCountries.allCountries
 
   const handleCountryChange = (code) => {
     const newCountry = code

@@ -9,3 +9,8 @@ export const toLoc = (number) => {
 export const log = (msg) => {
   console.log(msg)
 }
+
+export const getFlagcdnFlag = (code, size = 'w80') => {
+  let lowCode = code.toLowerCase()
+  return `https://flagcdn.com/${size}/${lowCode}.png`
+}

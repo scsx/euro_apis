@@ -35,10 +35,6 @@ const Header = () => {
               <NavDropdown.Item as='span'>
                 <NavLink to='/fullpage'>Fullpage</NavLink>
               </NavDropdown.Item>
-              <NavDropdown.Item href='/distritos/Porto'>Porto</NavDropdown.Item>
-              <NavDropdown.Item href='/distritos'>
-                Todos os distritos
-              </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href='/distritos-demografia'>
                 Demografia

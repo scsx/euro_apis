@@ -1,0 +1,42 @@
+@import '../styles/custom-vars';
+
+.page__countries {
+  .countrieslist {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__item {
+      width: calc(100% / 3);
+      display: flex;
+      align-items: center;
+      padding-bottom: 3rem;
+
+      &:hover * {
+        color: dodgerblue;
+      }
+    }
+
+    &__flag {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border: 1px solid $bodycolor;
+    }
+
+    &__link {
+      padding-left: 1rem;
+      font-size: 1.5rem;
+      font-family: 'RestoraBold';
+      color: $bodycolor;
+
+      small {
+        display: block;
+        line-height: 1;
+      }
+    }
+  }
+}
