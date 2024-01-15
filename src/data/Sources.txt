@@ -1,8 +1,12 @@
 Flags
 https://github.com/stefangabos/world_countries/tree/master/data/flags
 
+UNECE
 Gross domestic product (GDP) in absolute value
 https://w3.unece.org/PXWeb/en/Table?IndicatorCode=7
 
 Gross domestic product (GDP) per capita
 https://w3.unece.org/PXWeb/en/Table?IndicatorCode=12
+
+All UNECE
+https://w3.unece.org/PXWeb/en/TableDomains/
