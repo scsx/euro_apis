@@ -4,6 +4,7 @@ import Countries from './pages/Countries'
 import Country from './pages/Country'
 import Error404 from './pages/Error404'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import FullPage from './pages/FullPage'
 import './App.scss'
 

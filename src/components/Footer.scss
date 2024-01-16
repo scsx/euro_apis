@@ -1,0 +1,12 @@
+@import '../styles/custom-vars';
+
+.footer {
+  text-align: center;
+
+  p {
+    max-width: 400px;
+    margin: 3rem auto 0 auto;
+    border-top: 1px solid $bordercolor2;
+    padding: .75rem 0 1rem 0;
+  }
+}

@@ -1,5 +1,5 @@
 import Page from "../hooks/Page"
-import './Page.scss'
+import './Home.scss'
 
 const Home = () => {
   return (

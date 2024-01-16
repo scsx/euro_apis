@@ -14,4 +14,8 @@
       padding: 3px 10px;
     }
   }
+
+  .dropstart .dropdown-toggle::before {
+    display: none;
+  }
 }
