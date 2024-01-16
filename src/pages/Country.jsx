@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { ErrorBoundary } from 'react-error-boundary'
@@ -28,6 +28,7 @@ const Country = () => {
       })
       .catch((error) => console.error(error))
   }, [])
+  console.log(countryData)
 
   // Selected country to compare (if exists in state)
   let countryToCompare = false
@@ -35,11 +36,16 @@ const Country = () => {
     countryToCompare = true
   }
 
-  console.log(countryData)
+  // Indicators scroll and back to top
+  const refTop = useRef(null)
+  const refIndicator1 = useRef(null)
+  const scrollToElement = (ref) => {
+    ref.current.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <Page classes='country' fullWidth={false}>
-      <h1>{countryVisibleName}</h1>
+      <h1 ref={refTop}>{countryVisibleName}</h1>
 
       <Row>
         <Col xs={8}>
@@ -74,7 +80,14 @@ const Country = () => {
           )}
 
           <ListGroup className='mt-3'>
-            <ListGroup.Item>Life expectancy at birth</ListGroup.Item>
+            <ListGroup.Item>
+              <button
+                onClick={() => {
+                  scrollToElement(refIndicator1)
+                }}>
+                Life expectancy at birth
+              </button>
+            </ListGroup.Item>
             <ListGroup.Item>Population density</ListGroup.Item>
             <ListGroup.Item>Total fertility rate</ListGroup.Item>
             <ListGroup.Item>Proportion of one person households</ListGroup.Item>
@@ -82,6 +95,32 @@ const Country = () => {
           </ListGroup>
         </Col>
       </Row>
+
+      <h2
+        style={{
+          marginTop: '15rem'
+        }}>
+        Life expectancy at birth
+      </h2>
+      <h2
+        style={{
+          marginTop: '15rem'
+        }}>
+        Life expectancy at birth
+      </h2>
+      <h2
+        style={{
+          marginTop: '15rem'
+        }}>
+        Life expectancy at birth
+      </h2>
+      <h2
+        ref={refIndicator1}
+        style={{
+          marginTop: '15rem'
+        }}>
+        Life expectancy at birth
+      </h2>
     </Page>
   )
 }
