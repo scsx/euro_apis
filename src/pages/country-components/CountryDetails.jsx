@@ -37,10 +37,6 @@ const CountryDetails = ({ countryData }) => {
               <div className='key'>Tld</div>
               <div className='value ms-auto'>{countryData.tld[0]}</div>
             </Stack>
-            <Stack direction='horizontal' gap={3}>
-              <div className='key'>Gini</div>
-              <div className='value ms-auto'>{countryData.gini[2018]}</div>
-            </Stack>
             {countryData.borders?.length > 0 && (
               <Stack direction='horizontal' gap={3}>
                 <div className='key'>Borders</div>
