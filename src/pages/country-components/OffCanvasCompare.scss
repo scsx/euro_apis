@@ -1,0 +1,15 @@
+@import '../../styles/custom-vars';
+
+.offcanvas.offcanvas-end.offcanvas__compare {
+  width: 600px;
+  background-color: $bodybgdark;
+
+  .btn-close {
+    color: #837e74;
+  }
+
+  .offcanvas-title.h5 {
+    font-size: 2rem;
+    color: $bodybg;
+  }
+}

@@ -1,4 +1,5 @@
 @import '../styles/custom-vars';
+@import './country-components/OffCanvasCompare.scss';
 
 .page__country {
   h1 {
@@ -7,9 +8,7 @@
   }
 
   .comparison {
-    background-color: white;
-    padding: 1rem;
-    border: 1px solid $bordercolor2;
+    background-color: transparent;
   }
 
   // COUNTRY DETAIL
@@ -29,7 +28,7 @@
     }
 
     .maindetails {
-      padding-left: .5rem;
+      padding-left: 0.5rem;
       padding-right: 2rem;
 
       .hstack {
@@ -55,7 +54,7 @@
             background-color: transparent !important;
             border: 1px solid dodgerblue;
             color: dodgerblue;
-            margin-left: .5rem;
+            margin-left: 0.5rem;
           }
         }
       }
