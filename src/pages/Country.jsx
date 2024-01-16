@@ -35,7 +35,7 @@ const Country = () => {
   }
 
   console.log(countryData)
-  
+
   return (
     <Page classes='country' fullWidth={false}>
       <h1>{countryVisibleName}</h1>
@@ -50,15 +50,13 @@ const Country = () => {
                 // reset the state of your app here
               }}
               resetKeys={['someKey']}>
-              <CountryDetails
-                countryData={countryData}
-              />
+              <CountryDetails countryData={countryData} />
             </ErrorBoundary>
           )}
         </Col>
 
-          <Col xs={4}>
-        {countryToCompare && (
+        <Col xs={4}>
+          {countryToCompare && (
             <ErrorBoundary
               FallbackComponent={ErrorBoundaryComponent}
               onReset={() => {
@@ -66,14 +64,14 @@ const Country = () => {
               }}
               resetKeys={['someKey']}>
               <CountryComparison
-                code={countryId}
-                name={countryVisibleName}
-                selectedCountry={selectedCountry}
+                countryCode1={countryId}
+                countryName1={countryVisibleName}
+                countryCode2={selectedCountry}
                 getVisibleName={getCountryName}
               />
             </ErrorBoundary>
-        )}
-          </Col>
+          )}
+        </Col>
       </Row>
     </Page>
   )
