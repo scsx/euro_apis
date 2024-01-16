@@ -1,6 +1,7 @@
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
+import Badge from 'react-bootstrap/Badge'
 import { toLoc } from '../../utils/utils'
 
 const CountryDetails = ({ countryData }) => {
@@ -33,8 +34,12 @@ const CountryDetails = ({ countryData }) => {
               <div className='value ms-auto'>{countryData.capital[0]}</div>
             </Stack>
             <Stack direction='horizontal' gap={3}>
-              <div className='key'>tld</div>
+              <div className='key'>Tld</div>
               <div className='value ms-auto'>{countryData.tld[0]}</div>
+            </Stack>
+            <Stack direction='horizontal' gap={3}>
+              <div className='key'>Gini</div>
+              <div className='value ms-auto'>{countryData.gini[2018]}</div>
             </Stack>
             {countryData.borders?.length > 0 && (
               <Stack direction='horizontal' gap={3}>
@@ -44,6 +49,18 @@ const CountryDetails = ({ countryData }) => {
                 </div>
               </Stack>
             )}
+            <Stack direction='horizontal' gap={3}>
+              <div className='key'>Currencies</div>
+              <div className='value ms-auto'>
+                {Object.keys(countryData.currencies).map((cur) => {
+                  return (
+                    <Badge key={cur} pill className='currency'>
+                      {cur}
+                    </Badge>
+                  )
+                })}
+              </div>
+            </Stack>
           </div>
         </Col>
       </Row>

@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import getCountryName from '../api/getCountryName'
-import { log } from '../utils/utils'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Page from '../hooks/Page'
@@ -35,17 +34,11 @@ const Country = () => {
     countryToCompare = true
   }
 
-  log(countryData)
+  console.log(countryData)
   
   return (
     <Page classes='country' fullWidth={false}>
-      <Row>
-        <Col xs={2}>
-        </Col>
-        <Col xs={10}>
-          <h1>{countryVisibleName}</h1>
-        </Col>
-      </Row>
+      <h1>{countryVisibleName}</h1>
 
       <Row>
         <Col xs={8}>
