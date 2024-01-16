@@ -60,4 +60,16 @@
       }
     }
   }
+  .indicatorlist {
+    .list-group-item {
+      cursor: pointer;
+      background-color: transparent;
+      transition: all .3s;
+
+      &:hover {
+        background-color: white;
+        color: dodgerblue;
+      }
+    }
+  }
 }

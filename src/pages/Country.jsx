@@ -79,14 +79,12 @@ const Country = () => {
             </ErrorBoundary>
           )}
 
-          <ListGroup className='mt-3'>
-            <ListGroup.Item>
-              <button
-                onClick={() => {
-                  scrollToElement(refIndicator1)
-                }}>
-                Life expectancy at birth
-              </button>
+          <ListGroup className='indicatorlist mt-3'>
+            <ListGroup.Item
+              onClick={() => {
+                scrollToElement(refIndicator1)
+              }}>
+              Life expectancy at birth
             </ListGroup.Item>
             <ListGroup.Item>Population density</ListGroup.Item>
             <ListGroup.Item>Total fertility rate</ListGroup.Item>
