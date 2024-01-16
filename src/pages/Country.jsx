@@ -1,12 +1,13 @@
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
-import getCountryName from '../api/getCountryName'
+import { ErrorBoundary } from 'react-error-boundary'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import ListGroup from 'react-bootstrap/ListGroup'
+import getCountryName from '../api/getCountryName'
 import Page from '../hooks/Page'
 import Loading from '../components/Loading'
-import { ErrorBoundary } from 'react-error-boundary'
 import ErrorBoundaryComponent from '../components/ErrorBoundaryComponent'
 import CountryDetails from './country-components/CountryDetails'
 import CountryComparison from './country-components/CountryComparison'
@@ -71,6 +72,14 @@ const Country = () => {
               />
             </ErrorBoundary>
           )}
+
+          <ListGroup className='mt-3'>
+            <ListGroup.Item>Life expectancy at birth</ListGroup.Item>
+            <ListGroup.Item>Population density</ListGroup.Item>
+            <ListGroup.Item>Total fertility rate</ListGroup.Item>
+            <ListGroup.Item>Proportion of one person households</ListGroup.Item>
+            <ListGroup.Item>Consumer price index</ListGroup.Item>
+          </ListGroup>
         </Col>
       </Row>
     </Page>

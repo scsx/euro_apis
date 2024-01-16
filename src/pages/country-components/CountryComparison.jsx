@@ -11,13 +11,15 @@ const CountryComparison = ({
 }) => {
   const countryName2 = getVisibleName(countryCode2)
 
+  console.log(countryName2)
+
   const [showOffcanvas, setShowOffcanvas] = useState(false)
   const handleClose = () => setShowOffcanvas(false)
   const handleShow = () => setShowOffcanvas(true)
 
   return (
     <div className='comparison'>
-      <div className='text-right'>
+      <div className='text-right mb-4'>
         <Button variant='outline-primary' onClick={handleShow}>
           Compare{' '}
           <b>
