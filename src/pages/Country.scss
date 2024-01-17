@@ -101,11 +101,22 @@
 
     .table {
       table-layout: fixed;
-      td.cpi--red {
-        color: #d54141;
-      }
-      td.cpi--green {
-        color: #3aab26;
+
+      &.table-cpi {
+        border-color: $bordercolor2;
+
+        td {
+          &.cpi--red {
+            color: #d54141;
+          }
+          &.cpi--redder {
+            background-color: #f9dde2;
+            color: #a72121;
+          }
+          &.cpi--green {
+            color: #3aab26;
+          }
+        }
       }
     }
   }

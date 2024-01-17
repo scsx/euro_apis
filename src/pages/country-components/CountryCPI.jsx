@@ -42,7 +42,7 @@ const CountryCPI = ({ cca3 }) => {
       {loading && <Loading />}
       <p className='description'>{description}</p>
       {noDataMsg && <Alert variant='warning'>{noDataMsg}</Alert>}
-      <table className='table table-bordered text-center'>
+      <table className='table table-bordered text-center table-cpi'>
         {years.length > 0 && (
           <thead>
             <tr>
@@ -59,7 +59,13 @@ const CountryCPI = ({ cca3 }) => {
                 return (
                   <td
                     key={val + i}
-                    className={val < 0 ? 'cpi--green' : 'cpi--red'}>
+                    className={
+                      val < 0
+                        ? 'cpi--green'
+                        : val < 5
+                        ? 'cpi--red'
+                        : 'cpi--redder'
+                    }>
                     {val}
                   </td>
                 )

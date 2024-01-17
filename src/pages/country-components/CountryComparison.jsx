@@ -29,8 +29,7 @@ const CountryComparison = ({
     }
 
     fetchData()
-    console.log(cd2)
-  }, [])
+  }, [countryCode2])
 
   return (
     <div className='comparison'>
