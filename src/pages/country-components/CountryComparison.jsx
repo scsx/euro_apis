@@ -1,11 +1,12 @@
+import { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table'
-import { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 
 const CountryComparison = ({
   countryCode1,
   countryName1,
+  countryDetails1,
   countryCode2,
   getVisibleName
 }) => {

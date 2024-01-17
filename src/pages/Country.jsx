@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import ListGroup from 'react-bootstrap/ListGroup'
 import getCountryName from '../api/getCountryName'
+import getCountryDetails from '../api/getCountryDetails'
 import Page from '../hooks/Page'
 import Loading from '../components/Loading'
 import ErrorBoundaryComponent from '../components/ErrorBoundaryComponent'
@@ -14,21 +15,24 @@ import CountryComparison from './country-components/CountryComparison'
 import './Country.scss'
 
 const Country = () => {
-  const [countryData, setCountryData] = useState({})
   const { countryId } = useParams()
+  const [countryData, setCountryData] = useState({})
   const selectedCountry = useSelector((state) => state.country.selectedCountry)
   const countryVisibleName = getCountryName(countryId)
 
   // Current Country Details
   useEffect(() => {
-    fetch(`https://restcountries.com/v3.1/alpha/${countryId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setCountryData(data[0])
-      })
-      .catch((error) => console.error(error))
+    const fetchData = async () => {
+      try {
+        const countryData = await getCountryDetails(countryId)
+        setCountryData(countryData)
+      } catch (error) {
+        console.error('Error fetching country details:', error)
+      }
+    }
+
+    fetchData()
   }, [])
-  console.log(countryData)
 
   // Selected country to compare (if exists in state)
   let countryToCompare = false
@@ -73,6 +77,7 @@ const Country = () => {
               <CountryComparison
                 countryCode1={countryId}
                 countryName1={countryVisibleName}
+                countryDetails1={countryData}
                 countryCode2={selectedCountry}
                 getVisibleName={getCountryName}
               />
