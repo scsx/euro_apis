@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import data from '../../data/other/unece/Consumer-price-index.json'
+import data from '../../data/other/unece/Population-density.json'
 import Alert from 'react-bootstrap/Alert'
 import Loading from '../../components/Loading'
 
-const CountryCPI = ({ cca3 }) => {
+const CountryPopDensity = ({ cca3 }) => {
   const [loading, setLoading] = useState(true)
   const [years, setYears] = useState([])
   const [values, setValues] = useState([])
@@ -25,6 +25,7 @@ const CountryCPI = ({ cca3 }) => {
         } else {
           setNoDataMsg('No data for this country.')
         }
+
       } catch (error) {
         console.log('Error loading data:', error)
         setNoDataMsg('No data for this country.')
@@ -40,7 +41,6 @@ const CountryCPI = ({ cca3 }) => {
   return (
     <>
       {loading && <Loading />}
-      <p className='description'>{description}</p>
       {noDataMsg && <Alert variant='warning'>{noDataMsg}</Alert>}
       <table className='table table-bordered text-center'>
         {years.length > 0 && (
@@ -56,13 +56,7 @@ const CountryCPI = ({ cca3 }) => {
           <tbody>
             <tr>
               {values.map((val, i) => {
-                return (
-                  <td
-                    key={val + i}
-                    className={val < 0 ? 'cpi--green' : 'cpi--red'}>
-                    {val}
-                  </td>
-                )
+                return <td key={val + i}>{val}</td>
               })}
             </tr>
           </tbody>
@@ -72,4 +66,4 @@ const CountryCPI = ({ cca3 }) => {
   )
 }
 
-export default CountryCPI
+export default CountryPopDensity

@@ -61,7 +61,10 @@
     }
   }
   .indicatorlist {
+    border-color: $bordercolor2;
+
     .list-group-item {
+      border-color: $bordercolor2;
       cursor: pointer;
       background-color: transparent;
       transition: all 0.3s;
@@ -78,6 +81,32 @@
     h2 {
       margin-top: 4rem;
       margin-bottom: 2rem;
+
+      small {
+        font-family: inherit;
+        font-size: 50%;
+      }
+    }
+
+    p.description {
+      width: 66.66%;
+      font-size: 13px;
+      margin-top: -1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .alert {
+      width: 50%;
+    }
+
+    .table {
+      table-layout: fixed;
+      td.cpi--red {
+        color: #d54141;
+      }
+      td.cpi--green {
+        color: #3aab26;
+      }
     }
   }
 }
