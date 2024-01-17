@@ -12,11 +12,12 @@ import Loading from '../components/Loading'
 import ErrorBoundaryComponent from '../components/ErrorBoundaryComponent'
 import CountryDetails from './country-components/CountryDetails'
 import CountryComparison from './country-components/CountryComparison'
+import CountryCPI from './country-components/CountryCPI'
 import './Country.scss'
 
 const Country = () => {
   const { countryId } = useParams()
-  const [countryData, setCountryData] = useState({})
+  const [countryData1, setCountryData1] = useState({})
   const selectedCountry = useSelector((state) => state.country.selectedCountry)
   const countryVisibleName = getCountryName(countryId)
 
@@ -24,14 +25,15 @@ const Country = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const countryData = await getCountryDetails(countryId)
-        setCountryData(countryData)
+        const fetchedDetails = await getCountryDetails(countryId)
+        setCountryData1(fetchedDetails)
       } catch (error) {
         console.error('Error fetching country details:', error)
       }
     }
 
     fetchData()
+    //console.log(countryData1)
   }, [])
 
   // Selected country to compare (if exists in state)
@@ -43,7 +45,7 @@ const Country = () => {
   // Indicators scroll and back to top
   const refTop = useRef(null)
   const refIndicator1 = useRef(null)
-  const scrollToElement = (ref) => {
+  const scrollToEl = (ref) => {
     ref.current.scrollIntoView({ behavior: 'smooth' })
   }
 
@@ -53,15 +55,15 @@ const Country = () => {
 
       <Row>
         <Col xs={8}>
-          {Object.keys(countryData).length === 0 && <Loading />}
-          {Object.keys(countryData).length > 0 && (
+          {Object.keys(countryData1).length === 0 && <Loading />}
+          {Object.keys(countryData1).length > 0 && (
             <ErrorBoundary
               FallbackComponent={ErrorBoundaryComponent}
               onReset={() => {
                 // reset the state of your app here
               }}
               resetKeys={['someKey']}>
-              <CountryDetails countryData={countryData} />
+              <CountryDetails countryData={countryData1} />
             </ErrorBoundary>
           )}
         </Col>
@@ -77,9 +79,9 @@ const Country = () => {
               <CountryComparison
                 countryCode1={countryId}
                 countryName1={countryVisibleName}
-                countryDetails1={countryData}
+                cd1={countryData1}
                 countryCode2={selectedCountry}
-                getVisibleName={getCountryName}
+                countryName2={getCountryName(selectedCountry)}
               />
             </ErrorBoundary>
           )}
@@ -87,43 +89,29 @@ const Country = () => {
           <ListGroup className='indicatorlist mt-3'>
             <ListGroup.Item
               onClick={() => {
-                scrollToElement(refIndicator1)
+                scrollToEl(refIndicator1)
               }}>
-              Life expectancy at birth
+              Consumer price index
             </ListGroup.Item>
+            <ListGroup.Item></ListGroup.Item>
             <ListGroup.Item>Population density</ListGroup.Item>
             <ListGroup.Item>Total fertility rate</ListGroup.Item>
             <ListGroup.Item>Proportion of one person households</ListGroup.Item>
-            <ListGroup.Item>Consumer price index</ListGroup.Item>
           </ListGroup>
         </Col>
       </Row>
 
-      <h2
-        style={{
-          marginTop: '15rem'
-        }}>
-        Life expectancy at birth
-      </h2>
-      <h2
-        style={{
-          marginTop: '15rem'
-        }}>
-        Life expectancy at birth
-      </h2>
-      <h2
-        style={{
-          marginTop: '15rem'
-        }}>
-        Life expectancy at birth
-      </h2>
-      <h2
-        ref={refIndicator1}
-        style={{
-          marginTop: '15rem'
-        }}>
-        Life expectancy at birth
-      </h2>
+      <section className='cpi'>
+        <h2 ref={refIndicator1}>Consumer price index</h2>
+        <ErrorBoundary
+          FallbackComponent={ErrorBoundaryComponent}
+          onReset={() => {
+            // reset the state of your app here
+          }}
+          resetKeys={['someKey']}>
+          <CountryCPI cca3={countryData1.cca3} />
+        </ErrorBoundary>
+      </section>
     </Page>
   )
 }

@@ -64,12 +64,20 @@
     .list-group-item {
       cursor: pointer;
       background-color: transparent;
-      transition: all .3s;
+      transition: all 0.3s;
 
       &:hover {
         background-color: white;
         color: dodgerblue;
       }
+    }
+  }
+
+  // Sections
+  section {
+    h2 {
+      margin-top: 4rem;
+      margin-bottom: 2rem;
     }
   }
 }

@@ -14,8 +14,27 @@
   }
 
   table.comparetable {
+    border-color: $bodybgdark;
+
+    & > :not(caption) > * > * {
+      background-color: darken($bodybgdark, 5%);
+    }
+
     th {
       font-family: 'PoppinsSemiBold';
+
+      &.empty {
+        background-color: $bodybgdark;
+      }
+    }
+
+    td.name {
+      font-size: 14px;
+    }
+
+    td.winner {
+      background-color: #c1eb80;
+      color: black;
     }
   }
 }
