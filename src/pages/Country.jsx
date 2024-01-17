@@ -22,21 +22,16 @@ const Country = () => {
 
   // Current Country Details
   useEffect(() => {
-    let tempData
     const fetchData = async () => {
-      const tempData = await getCountryDetails(countryId)
+      try {
+        const countryData = await getCountryDetails(countryId)
+        setCountryData(countryData)
+      } catch (error) {
+        console.error('Error fetching country details:', error)
+      }
     }
 
     fetchData()
-    console.log(tempData)
-    //setCountryData(tempData)
-
-    /* fetch(`https://restcountries.com/v3.1/alpha/${countryId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setCountryData(data[0])
-      })
-      .catch((error) => console.error(error)) */
   }, [])
 
   // Selected country to compare (if exists in state)

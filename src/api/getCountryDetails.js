@@ -1,18 +1,17 @@
 const getCountryDetails = async (code) => {
-  let countryData
+  try {
+    const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`)
 
-  await fetch(`https://restcountries.com/v3.1/alpha/${code}`)
-    .then((response) => response.json())
-    .then((data) => {
-      countryData = data
-    })
-    .catch((error) => console.error(error))
-    
-  return countryData
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+
+    const data = await response.json()
+    return data[0]
+  } catch (error) {
+    console.error(error)
+    throw error // rethrow the error for handling in the calling code
+  }
 }
 
 export default getCountryDetails
-
-/* useEffect(async () => {
-  const data = await fetchData();
-}, [fetchData]) */
