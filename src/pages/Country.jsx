@@ -108,7 +108,7 @@ const Country = () => {
               }}>
               Total fertility rate
             </ListGroup.Item>
-            <ListGroup.Item>Wood consumption</ListGroup.Item>
+            <ListGroup.Item>GDP per capita</ListGroup.Item>
             <ListGroup.Item>Proportion of one person households</ListGroup.Item>
           </ListGroup>
         </Col>
