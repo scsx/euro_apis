@@ -9,3 +9,4 @@
 - [https://getbootstrap.com](https://getbootstrap.com)
 - [https://react-bootstrap.github.io](https://react-bootstrap.github.io)
 - [https://react-icons.github.io/react-icons/](https://react-icons.github.io/react-icons/)
+- [react-d3-library](https://react-d3-library.github.io/)

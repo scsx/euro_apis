@@ -8,7 +8,6 @@ const CountryPopDensity = ({ cca3 }) => {
   const [years, setYears] = useState([])
   const [values, setValues] = useState([])
   const [noDataMsg, setNoDataMsg] = useState(null)
-  const description = data.desc
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +21,8 @@ const CountryPopDensity = ({ cca3 }) => {
 
           setYears(filteredArray[0]?.Periods || [])
           setValues(filteredArray[0]?.Values || [])
+
+          //console.log(values)
         } else {
           setNoDataMsg('No data for this country.')
         }

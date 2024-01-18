@@ -14,6 +14,7 @@ const CountryComparison = ({
 }) => {
   const [cd2, setCd2] = useState({})
   const [showOffcanvas, setShowOffcanvas] = useState(false)
+  const [ginis, setGinis] = useState({})
   const handleClose = () => setShowOffcanvas(false)
   const handleShow = () => setShowOffcanvas(true)
 
@@ -30,6 +31,55 @@ const CountryComparison = ({
 
     fetchData()
   }, [countryCode2])
+
+  // Gini for both
+  useEffect(() => {
+    console.log('got here')
+    console.log(cd1)
+    if (Object.keys(cd1).length > 0 && Object.keys(cd2).length > 0) {
+      let yearsAvailable = ['2020', '2019', '2018', '2017', '2016']
+      for (let index = 0; index < yearsAvailable.length; index++) {
+        if (cd1.gini) {
+          if (cd1.gini[yearsAvailable[index]]) {
+            setGinis((prevState) => ({
+              ...prevState,
+              cd1: {
+                year: `(${yearsAvailable[index]})`,
+                value: cd1.gini[yearsAvailable[index]]
+              }
+            }))
+          }
+        } else {
+          setGinis((prevState) => ({
+            ...prevState,
+            cd1: {
+              year: '',
+              value: 'n/a'
+            }
+          }))
+        }
+        if (cd2.gini) {
+          if (cd2.gini[yearsAvailable[index]]) {
+            setGinis((prevState) => ({
+              ...prevState,
+              cd2: {
+                year: `(${yearsAvailable[index]})`,
+                value: cd2.gini[yearsAvailable[index]]
+              }
+            }))
+          }
+        } else {
+          setGinis((prevState) => ({
+            ...prevState,
+            cd2: {
+              year: '',
+              value: 'n/a'
+            }
+          }))
+        }
+      }
+    }
+  }, [countryCode2, cd1, cd2])
 
   return (
     <div className='comparison'>
@@ -53,11 +103,11 @@ const CountryComparison = ({
         className='offcanvas__compare'>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            {countryName1} vs {countryName2}
+            <span>{countryName1}</span> vs <span>{countryName2}</span>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {Object.keys(cd2).length > 0 && (
+          {Object.keys(cd1).length > 0 && Object.keys(cd2).length > 0 && (
             <Table bordered variant='dark' className='comparetable'>
               <thead>
                 <tr>
@@ -89,19 +139,26 @@ const CountryComparison = ({
                 </tr>
                 <tr>
                   <td className='name'>Bordering countries</td>
-                  <td
-                    className={
-                      cd1.borders.length > cd2.borders.length ? 'winner' : ''
-                    }>
-                    {cd1.borders.length}
-                  </td>
-                  <td
-                    className={
-                      cd2.borders.length > cd1.borders.length ? 'winner' : ''
-                    }>
-                    {cd2.borders.length}
-                  </td>
+                  <td>{cd1.borders ? cd1.borders.length : '0'}</td>
+                  <td>{cd2.borders ? cd2.borders.length : '0'}</td>
                 </tr>
+                {ginis.cd1 && ginis.cd2 && (
+                  <tr>
+                    <td className='name'>Gini</td>
+                    <td
+                      className={
+                        ginis.cd1.value < ginis.cd2.value ? 'winner' : ''
+                      }>
+                      {ginis.cd1.value} <small>{ginis.cd1.year}</small>
+                    </td>
+                    <td
+                      className={
+                        ginis.cd2.value < ginis.cd1.value ? 'winner' : ''
+                      }>
+                      {ginis.cd2.value} <small>{ginis.cd2.year}</small>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </Table>
           )}
