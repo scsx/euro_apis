@@ -1,4 +1,4 @@
-import Page from '../hooks/Page'
+import Page from '../components/Page'
 import { Link } from 'react-router-dom'
 import { GrDocumentMissing } from 'react-icons/gr'
 

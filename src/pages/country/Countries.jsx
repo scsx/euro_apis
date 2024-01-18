@@ -1,7 +1,7 @@
 import { ErrorBoundary } from 'react-error-boundary'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Page from '../../hooks/Page'
+import Page from '../../components/Page'
 import ErrorBoundaryComponent from '../../components/ErrorBoundaryComponent'
 import { getFlagcdnFlag } from '../../utils/utils'
 import './Countries.scss'
