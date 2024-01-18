@@ -7,7 +7,7 @@ const CountryPopDensity = ({ cca3 }) => {
   const [loading, setLoading] = useState(true)
   const [years, setYears] = useState([])
   const [values, setValues] = useState([])
-  const [noDataMsg, setNoDataMsg] = useState(null)
+  const [noDataMsg, setNoDataMsg] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,18 +21,14 @@ const CountryPopDensity = ({ cca3 }) => {
 
           setYears(filteredArray[0]?.Periods || [])
           setValues(filteredArray[0]?.Values || [])
-
-          //console.log(values)
+          setNoDataMsg('')
         } else {
           setNoDataMsg('No data for this country.')
         }
-
       } catch (error) {
         console.log('Error loading data:', error)
-        setNoDataMsg('No data for this country.')
       } finally {
         setLoading(false)
-        setNoDataMsg(null)
       }
     }
 
@@ -42,7 +38,9 @@ const CountryPopDensity = ({ cca3 }) => {
   return (
     <>
       {loading && <Loading />}
-      {noDataMsg && <Alert variant='warning'>{noDataMsg}</Alert>}
+
+      {noDataMsg.length > 0 && <Alert variant='warning'>{noDataMsg}</Alert>}
+
       <table className='table table-bordered text-center'>
         {years.length > 0 && (
           <thead>

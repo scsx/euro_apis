@@ -34,8 +34,6 @@ const CountryComparison = ({
 
   // Gini for both
   useEffect(() => {
-    console.log('got here')
-    console.log(cd1)
     if (Object.keys(cd1).length > 0 && Object.keys(cd2).length > 0) {
       let yearsAvailable = ['2020', '2019', '2018', '2017', '2016']
       for (let index = 0; index < yearsAvailable.length; index++) {

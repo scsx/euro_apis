@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import data from '../../data/other/unece/Consumer-price-index.json'
+import data from '../../data/other/unece/Total-fertility-rate.json'
 import Alert from 'react-bootstrap/Alert'
 import Loading from '../../components/Loading'
 
-const CountryCPI = ({ cca3 }) => {
+const CountryTFR = ({ cca3 }) => {
   const [loading, setLoading] = useState(true)
   const [years, setYears] = useState([])
   const [values, setValues] = useState([])
@@ -60,9 +60,9 @@ const CountryCPI = ({ cca3 }) => {
                   <td
                     key={val + i}
                     className={
-                      val < 0
+                      val > 2.1
                         ? 'cpi--green'
-                        : val < 5
+                        : val > 1.5
                         ? 'cpi--red'
                         : 'cpi--redder'
                     }>
@@ -78,4 +78,4 @@ const CountryCPI = ({ cca3 }) => {
   )
 }
 
-export default CountryCPI
+export default CountryTFR

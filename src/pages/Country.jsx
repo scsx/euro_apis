@@ -14,6 +14,7 @@ import CountryDetails from './country-components/CountryDetails'
 import CountryComparison from './country-components/CountryComparison'
 import CountryCPI from './country-components/CountryCPI'
 import CountryPopDensity from './country-components/CountryPopDensity'
+import CountryTFR from './country-components/CountryTFR'
 import './Country.scss'
 
 const Country = () => {
@@ -47,6 +48,7 @@ const Country = () => {
   const refTop = useRef(null)
   const refIndicator1 = useRef(null)
   const refIndicator2 = useRef(null)
+  const refIndicator3 = useRef(null)
   const scrollToEl = (ref) => {
     ref.current.scrollIntoView({ behavior: 'smooth' })
   }
@@ -97,12 +99,17 @@ const Country = () => {
             </ListGroup.Item>
             <ListGroup.Item
               onClick={() => {
-                scrollToEl(refIndicator1)
+                scrollToEl(refIndicator2)
               }}>
               Population density
             </ListGroup.Item>
+            <ListGroup.Item
+              onClick={() => {
+                scrollToEl(refIndicator3)
+              }}>
+              Total fertility rate
+            </ListGroup.Item>
             <ListGroup.Item>Wood consumption</ListGroup.Item>
-            <ListGroup.Item>Total fertility rate</ListGroup.Item>
             <ListGroup.Item>Proportion of one person households</ListGroup.Item>
           </ListGroup>
         </Col>
@@ -131,6 +138,20 @@ const Country = () => {
           }}
           resetKeys={['someKey']}>
           <CountryPopDensity cca3={countryData1.cca3} />
+        </ErrorBoundary>
+      </section>
+
+      <section className='fertility'>
+        <h2 ref={refIndicator3}>
+          Total fertility rate
+        </h2>
+        <ErrorBoundary
+          FallbackComponent={ErrorBoundaryComponent}
+          onReset={() => {
+            // reset the state of your app here
+          }}
+          resetKeys={['someKey']}>
+          <CountryTFR cca3={countryData1.cca3} />
         </ErrorBoundary>
       </section>
     </Page>
