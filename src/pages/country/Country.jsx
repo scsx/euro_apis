@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { useParams, useNavigate, useLocation } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { ErrorBoundary } from 'react-error-boundary'
 
@@ -27,27 +27,30 @@ const Country = () => {
   const countryVisibleName = getCountryName(countryId)
   // Navigate from <Offcanvas> (managed here because <Offcanvas> is outside <Routes>)
   const navigate = useNavigate()
-  const [navigationDetected, setNavigationDetected] = useState(false)
 
   const navigateToPath = (path) => {
     navigate(path)
-    setNavigationDetected(true)
+    navigateDetectedRef.current = true
   }
 
   // Current Country Details and general country rerender
+  // useRef suggested by ChatGPT
+  const navigateDetectedRef = useRef(false)
+
   useEffect(() => {
+    console.log('render')
     const fetchData = async () => {
       try {
         const fetchedDetails = await getCountryDetails(countryId)
         setCountryData1(fetchedDetails)
-        setNavigationDetected(false) // This makes render 2x?
+        navigateDetectedRef.current = false // Reset after handling the navigation
       } catch (error) {
         console.error('Error fetching country details:', error)
       }
     }
 
     fetchData()
-  }, [navigationDetected])
+  }, [countryId])
 
   // Selected country to compare (if exists in state)
   let countryToCompare = false
