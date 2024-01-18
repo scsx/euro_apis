@@ -4,6 +4,8 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import { toLoc } from '../../utils/utils'
+import CountryComparisonGini from './CountryComparisonGini'
+import CountryComparisonFertility from './CountryComparisonFertility'
 
 const CountryComparison = ({
   countryCode1,
@@ -14,7 +16,6 @@ const CountryComparison = ({
 }) => {
   const [cd2, setCd2] = useState({})
   const [showOffcanvas, setShowOffcanvas] = useState(false)
-  const [ginis, setGinis] = useState({})
   const handleClose = () => setShowOffcanvas(false)
   const handleShow = () => setShowOffcanvas(true)
 
@@ -31,53 +32,6 @@ const CountryComparison = ({
 
     fetchData()
   }, [countryCode2])
-
-  // Gini for both
-  useEffect(() => {
-    if (Object.keys(cd1).length > 0 && Object.keys(cd2).length > 0) {
-      let yearsAvailable = ['2020', '2019', '2018', '2017', '2016']
-      for (let index = 0; index < yearsAvailable.length; index++) {
-        if (cd1.gini) {
-          if (cd1.gini[yearsAvailable[index]]) {
-            setGinis((prevState) => ({
-              ...prevState,
-              cd1: {
-                year: `(${yearsAvailable[index]})`,
-                value: cd1.gini[yearsAvailable[index]]
-              }
-            }))
-          }
-        } else {
-          setGinis((prevState) => ({
-            ...prevState,
-            cd1: {
-              year: '',
-              value: 'n/a'
-            }
-          }))
-        }
-        if (cd2.gini) {
-          if (cd2.gini[yearsAvailable[index]]) {
-            setGinis((prevState) => ({
-              ...prevState,
-              cd2: {
-                year: `(${yearsAvailable[index]})`,
-                value: cd2.gini[yearsAvailable[index]]
-              }
-            }))
-          }
-        } else {
-          setGinis((prevState) => ({
-            ...prevState,
-            cd2: {
-              year: '',
-              value: 'n/a'
-            }
-          }))
-        }
-      }
-    }
-  }, [countryCode2, cd1, cd2])
 
   return (
     <div className='comparison'>
@@ -140,23 +94,17 @@ const CountryComparison = ({
                   <td>{cd1.borders ? cd1.borders.length : '0'}</td>
                   <td>{cd2.borders ? cd2.borders.length : '0'}</td>
                 </tr>
-                {ginis.cd1 && ginis.cd2 && (
-                  <tr>
-                    <td className='name'>Gini</td>
-                    <td
-                      className={
-                        ginis.cd1.value < ginis.cd2.value ? 'winner' : ''
-                      }>
-                      {ginis.cd1.value} <small>{ginis.cd1.year}</small>
-                    </td>
-                    <td
-                      className={
-                        ginis.cd2.value < ginis.cd1.value ? 'winner' : ''
-                      }>
-                      {ginis.cd2.value} <small>{ginis.cd2.year}</small>
-                    </td>
-                  </tr>
-                )}
+
+                <CountryComparisonGini
+                  countryCode2={countryCode2}
+                  cd1={cd1}
+                  cd2={cd2}
+                />
+
+                <CountryComparisonFertility
+                  cca3Country1={cd1.cca3}
+                  cca3Country2={cd2.cca3}
+                />
               </tbody>
             </Table>
           )}

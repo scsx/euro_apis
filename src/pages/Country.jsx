@@ -35,7 +35,6 @@ const Country = () => {
     }
 
     fetchData()
-    //console.log(countryData1)
   }, [])
 
   // Selected country to compare (if exists in state)
@@ -81,9 +80,9 @@ const Country = () => {
               }}
               resetKeys={['someKey']}>
               <CountryComparison
+                cd1={countryData1}
                 countryCode1={countryId}
                 countryName1={countryVisibleName}
-                cd1={countryData1}
                 countryCode2={selectedCountry}
                 countryName2={getCountryName(selectedCountry)}
               />
