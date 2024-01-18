@@ -1,4 +1,4 @@
-import Page from '../hooks/Page'
+import Page from '../components/Page'
 import './FullPage.scss'
 
 const FullPage = () => {
