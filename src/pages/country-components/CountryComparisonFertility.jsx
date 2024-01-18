@@ -26,8 +26,8 @@ const CountryComparisonFertility = ({ cca3Country1, cca3Country2 }) => {
     return (
       <tr>
         <td className='name'>Fertility rate ({commonYear})</td>
-        <td className='name'>{tfr1}</td>
-        <td className='name'>{tfr2}</td>
+        <td className={tfr1 > tfr2 ? 'winner' : ''}>{tfr1}</td>
+        <td className={tfr2 > tfr1 ? 'winner' : ''}>{tfr2}</td>
       </tr>
     )
   }

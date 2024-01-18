@@ -6,6 +6,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import { toLoc } from '../../utils/utils'
 import CountryComparisonGini from './CountryComparisonGini'
 import CountryComparisonFertility from './CountryComparisonFertility'
+import CountryComparisonGDPperCapita from './CountryComparisonGDPperCapita'
 
 const CountryComparison = ({
   countryCode1,
@@ -102,6 +103,11 @@ const CountryComparison = ({
                 />
 
                 <CountryComparisonFertility
+                  cca3Country1={cd1.cca3}
+                  cca3Country2={cd2.cca3}
+                />
+
+                <CountryComparisonGDPperCapita
                   cca3Country1={cd1.cca3}
                   cca3Country2={cd2.cca3}
                 />
