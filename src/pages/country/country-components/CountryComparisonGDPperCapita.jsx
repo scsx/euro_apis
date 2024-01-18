@@ -1,5 +1,7 @@
-import data from '../../data/other/unece/GDP-per-capita.json'
-import { toLoc, getLastCommonEntry } from '../../utils/utils'
+// Similar files use getLastCommonEntry()
+
+import data from '../../../data/other/unece/GDP-per-capita.json'
+import { toLoc, getLastCommonEntry } from '../../../utils/utils'
 import { IoWarningOutline } from 'react-icons/io5'
 
 const CountryComparisonGDPperCapita = ({ cca3Country1, cca3Country2 }) => {

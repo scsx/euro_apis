@@ -1,9 +1,9 @@
 import { ErrorBoundary } from 'react-error-boundary'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Page from '../hooks/Page'
-import ErrorBoundaryComponent from '../components/ErrorBoundaryComponent'
-import { getFlagcdnFlag } from '../utils/utils'
+import Page from '../../hooks/Page'
+import ErrorBoundaryComponent from '../../components/ErrorBoundaryComponent'
+import { getFlagcdnFlag } from '../../utils/utils'
 import './Countries.scss'
 
 const Countries = () => {

@@ -1,10 +1,9 @@
 import { Routes, Route, Outlet } from 'react-router-dom'
 import Home from './pages/Home'
-import Countries from './pages/Countries'
-import Country from './pages/Country'
+import Countries from './pages/country/Countries'
+import Country from './pages/country/Country'
 import Error404 from './pages/Error404'
 import Header from './components/Header'
-import Footer from './components/Footer'
 import FullPage from './pages/FullPage'
 import './App.scss'
 
@@ -16,7 +15,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/countries' element={<Outlet />}>
           <Route index element={<Countries />} />
-          <Route path=":countryId" element={<Country/>} />
+          <Route path=':countryId' element={<Country />} />
         </Route>
         <Route path='/fullpage' element={<FullPage />} />
         {/* 404 page */}

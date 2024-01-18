@@ -5,16 +5,17 @@ import { ErrorBoundary } from 'react-error-boundary'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import ListGroup from 'react-bootstrap/ListGroup'
-import getCountryName from '../api/getCountryName'
-import getCountryDetails from '../api/getCountryDetails'
-import Page from '../hooks/Page'
-import Loading from '../components/Loading'
-import ErrorBoundaryComponent from '../components/ErrorBoundaryComponent'
+import getCountryName from '../../api/getCountryName'
+import getCountryDetails from '../../api/getCountryDetails'
+import Page from '../../hooks/Page'
+import Loading from '../../components/Loading'
+import ErrorBoundaryComponent from '../../components/ErrorBoundaryComponent'
 import CountryDetails from './country-components/CountryDetails'
 import CountryComparison from './country-components/CountryComparison'
 import CountryCPI from './country-components/CountryCPI'
 import CountryPopDensity from './country-components/CountryPopDensity'
 import CountryTFR from './country-components/CountryTFR'
+import CountryOnePersonHouseholds from './country-components/CountryOnePersonHouseholds'
 import './Country.scss'
 
 const Country = () => {
@@ -48,6 +49,7 @@ const Country = () => {
   const refIndicator1 = useRef(null)
   const refIndicator2 = useRef(null)
   const refIndicator3 = useRef(null)
+  const refIndicator4 = useRef(null)
   const scrollToEl = (ref) => {
     ref.current.scrollIntoView({ behavior: 'smooth' })
   }
@@ -108,8 +110,13 @@ const Country = () => {
               }}>
               Total fertility rate
             </ListGroup.Item>
+            <ListGroup.Item
+              onClick={() => {
+                scrollToEl(refIndicator4)
+              }}>
+              One person households
+            </ListGroup.Item>
             <ListGroup.Item>GDP per capita</ListGroup.Item>
-            <ListGroup.Item>Proportion of one person households</ListGroup.Item>
           </ListGroup>
         </Col>
       </Row>
@@ -141,9 +148,7 @@ const Country = () => {
       </section>
 
       <section className='fertility'>
-        <h2 ref={refIndicator3}>
-          Total fertility rate
-        </h2>
+        <h2 ref={refIndicator3}>Total fertility rate</h2>
         <ErrorBoundary
           FallbackComponent={ErrorBoundaryComponent}
           onReset={() => {
@@ -151,6 +156,18 @@ const Country = () => {
           }}
           resetKeys={['someKey']}>
           <CountryTFR cca3={countryData1.cca3} />
+        </ErrorBoundary>
+      </section>
+
+      <section className='households'>
+        <h2 ref={refIndicator4}>One person households <small>percentage</small></h2>
+        <ErrorBoundary
+          FallbackComponent={ErrorBoundaryComponent}
+          onReset={() => {
+            // reset the state of your app here
+          }}
+          resetKeys={['someKey']}>
+          <CountryOnePersonHouseholds cca3={countryData1.cca3} />
         </ErrorBoundary>
       </section>
     </Page>

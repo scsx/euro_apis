@@ -1,5 +1,7 @@
-import data from '../../data/other/unece/Total-fertility-rate.json'
-import { getLastCommonEntry } from '../../utils/utils'
+// Similar files use getLastCommonEntry()
+
+import data from '../../../data/other/unece/Total-fertility-rate.json'
+import { getLastCommonEntry } from '../../../utils/utils'
 
 const CountryComparisonFertility = ({ cca3Country1, cca3Country2 }) => {
   const dataCountry1 = data.DataTable.filter((country) => {

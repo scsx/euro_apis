@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import data from '../../data/other/unece/Total-fertility-rate.json'
+import data from '../../../data/other/unece/Total-fertility-rate.json'
 import Alert from 'react-bootstrap/Alert'
-import Loading from '../../components/Loading'
+import Loading from '../../../components/Loading'
 
 const CountryTFR = ({ cca3 }) => {
   const [loading, setLoading] = useState(true)

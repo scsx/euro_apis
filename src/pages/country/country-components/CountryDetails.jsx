@@ -2,7 +2,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
 import Badge from 'react-bootstrap/Badge'
-import { toLoc } from '../../utils/utils'
+import { toLoc } from '../../../utils/utils'
 
 const CountryDetails = ({ countryData }) => {
   return (

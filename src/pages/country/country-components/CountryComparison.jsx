@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
-import getCountryDetails from '../../api/getCountryDetails'
+import getCountryDetails from '../../../api/getCountryDetails'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
-import { toLoc } from '../../utils/utils'
+import { Link, useNavigate } from 'react-router-dom'
+import { toLoc } from '../../../utils/utils'
+import { IoIosArrowRoundForward } from 'react-icons/io'
 import CountryComparisonGini from './CountryComparisonGini'
 import CountryComparisonFertility from './CountryComparisonFertility'
 import CountryComparisonGDPperCapita from './CountryComparisonGDPperCapita'
+import CountryComparisonOnePersonHouseholds from './CountryComparisonOnePersonHouseholds'
 
 const CountryComparison = ({
   countryCode1,
@@ -19,6 +22,7 @@ const CountryComparison = ({
   const [showOffcanvas, setShowOffcanvas] = useState(false)
   const handleClose = () => setShowOffcanvas(false)
   const handleShow = () => setShowOffcanvas(true)
+  const navigate = useNavigate()
 
   // 2nd Country Details
   useEffect(() => {
@@ -33,6 +37,7 @@ const CountryComparison = ({
 
     fetchData()
   }, [countryCode2])
+
 
   return (
     <div className='comparison'>
@@ -56,7 +61,13 @@ const CountryComparison = ({
         className='offcanvas__compare'>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <span>{countryName1}</span> vs <span>{countryName2}</span>
+            <span>{countryName1}</span> vs{' '}
+            <span>
+              {countryName2}{' '}
+              <Link className='visitlink' to='#'>
+                view <IoIosArrowRoundForward />
+              </Link>
+            </span>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
@@ -108,6 +119,11 @@ const CountryComparison = ({
                 />
 
                 <CountryComparisonGDPperCapita
+                  cca3Country1={cd1.cca3}
+                  cca3Country2={cd2.cca3}
+                />
+
+                <CountryComparisonOnePersonHouseholds
                   cca3Country1={cd1.cca3}
                   cca3Country2={cd2.cca3}
                 />
