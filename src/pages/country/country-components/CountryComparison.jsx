@@ -3,7 +3,7 @@ import getCountryDetails from '../../../api/getCountryDetails'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { toLoc } from '../../../utils/utils'
 import { IoIosArrowRoundForward } from 'react-icons/io'
 import CountryComparisonGini from './CountryComparisonGini'
@@ -16,13 +16,13 @@ const CountryComparison = ({
   countryName1,
   cd1,
   countryCode2,
-  countryName2
+  countryName2,
+  navigateToPath
 }) => {
   const [cd2, setCd2] = useState({})
   const [showOffcanvas, setShowOffcanvas] = useState(false)
   const handleClose = () => setShowOffcanvas(false)
   const handleShow = () => setShowOffcanvas(true)
-  const navigate = useNavigate()
 
   // 2nd Country Details
   useEffect(() => {
@@ -37,7 +37,6 @@ const CountryComparison = ({
 
     fetchData()
   }, [countryCode2])
-
 
   return (
     <div className='comparison'>
@@ -64,9 +63,14 @@ const CountryComparison = ({
             <span>{countryName1}</span> vs{' '}
             <span>
               {countryName2}{' '}
-              <Link className='visitlink' to='#'>
+              <button
+                className='visitlink'
+                type='button'
+                onClick={() => {
+                  navigateToPath(`/countries/${countryCode2}`)
+                }}>
                 view <IoIosArrowRoundForward />
-              </Link>
+              </button>
             </span>
           </Offcanvas.Title>
         </Offcanvas.Header>

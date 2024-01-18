@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { ErrorBoundary } from 'react-error-boundary'
+
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -16,6 +17,7 @@ import CountryCPI from './country-components/CountryCPI'
 import CountryPopDensity from './country-components/CountryPopDensity'
 import CountryTFR from './country-components/CountryTFR'
 import CountryOnePersonHouseholds from './country-components/CountryOnePersonHouseholds'
+
 import './Country.scss'
 
 const Country = () => {
@@ -23,20 +25,29 @@ const Country = () => {
   const [countryData1, setCountryData1] = useState({})
   const selectedCountry = useSelector((state) => state.country.selectedCountry)
   const countryVisibleName = getCountryName(countryId)
+  // Navigate from <Offcanvas> (managed here because <Offcanvas> is outside <Routes>)
+  const navigate = useNavigate()
+  const [navigationDetected, setNavigationDetected] = useState(false)
 
-  // Current Country Details
+  const navigateToPath = (path) => {
+    navigate(path)
+    setNavigationDetected(true)
+  }
+
+  // Current Country Details and general country rerender
   useEffect(() => {
     const fetchData = async () => {
       try {
         const fetchedDetails = await getCountryDetails(countryId)
         setCountryData1(fetchedDetails)
+        setNavigationDetected(false) // This makes render 2x?
       } catch (error) {
         console.error('Error fetching country details:', error)
       }
     }
 
     fetchData()
-  }, [])
+  }, [navigationDetected])
 
   // Selected country to compare (if exists in state)
   let countryToCompare = false
@@ -87,6 +98,7 @@ const Country = () => {
                 countryName1={countryVisibleName}
                 countryCode2={selectedCountry}
                 countryName2={getCountryName(selectedCountry)}
+                navigateToPath={navigateToPath}
               />
             </ErrorBoundary>
           )}
@@ -160,7 +172,9 @@ const Country = () => {
       </section>
 
       <section className='households'>
-        <h2 ref={refIndicator4}>One person households <small>percentage</small></h2>
+        <h2 ref={refIndicator4}>
+          One person households <small>percentage</small>
+        </h2>
         <ErrorBoundary
           FallbackComponent={ErrorBoundaryComponent}
           onReset={() => {

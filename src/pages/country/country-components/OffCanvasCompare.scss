@@ -24,6 +24,8 @@
         color: $bodybg;
         opacity: .5;
         font-family: inherit;
+        border: none;
+        background-color: transparent;
 
         &:hover {
           opacity: 1;
