@@ -1,13 +1,11 @@
+import GDPdata from '../../../data/other/unece/GDP-per-capita.json'
 import * as d3 from 'd3'
 import { useEffect, useState, useRef } from 'react'
-
-import GDPdata from '../../../data/other/unece/GDP-per-capita.json'
-import Alert from 'react-bootstrap/Alert'
-import Loading from '../../../components/Loading'
+import { calculateAverage } from '../../../utils/utils'
 
 const CountryGDPCapita = ({ cca3 }) => {
-  const [loading, setLoading] = useState(true)
   const [GDPArray, setGDPArray] = useState([])
+  const [averageGDPValue, setAverageGDPValue] = useState(30000)
   const graphcontainer = useRef()
   const refSVG = useRef()
 
@@ -22,6 +20,12 @@ const CountryGDPCapita = ({ cca3 }) => {
           await new Promise((resolve) => setTimeout(resolve, 1000))
           const years = filteredArray[0]?.Periods || []
           const values = filteredArray[0]?.Values || []
+
+          if (values.length > 0) {
+            //setAverageGDPValue(calculateAverage(values))
+            setAverageGDPValue(Math.floor(calculateAverage(values)))
+          }
+
           const tempArray = []
 
           if (years.length > 0) {
@@ -35,71 +39,74 @@ const CountryGDPCapita = ({ cca3 }) => {
 
           const trimmedArray = tempArray.slice(7)
           setGDPArray(trimmedArray)
-
         } else {
           console.log('No data for this country.')
         }
       } catch (error) {
         console.log('Error loading data:', error)
-      } finally {
-        setLoading(false)
       }
     }
 
     fetchData()
-  }, [cca3])
+  }, [cca3, averageGDPValue])
 
   useEffect(() => {
-    // Set the dimensions and geometrys of the graph
-    const geometry = { top: 30, right: 30, bottom: 100, left: 60 },
-      width = 1296 - geometry.left - geometry.right,
-      height = 800 - geometry.top - geometry.bottom
+    if (GDPArray.length > 0) {
+      // Set the dimensions and geometrys of the graph
+      const geometry = { top: 30, right: 30, bottom: 100, left: 60 },
+        width = 1296 - geometry.left - geometry.right,
+        height = 800 - geometry.top - geometry.bottom
 
-    // Append the svg object to the body of the page
-    const svg = d3
-      .select(refSVG.current)
-      .append('svg')
-      .attr('width', width + geometry.left + geometry.right)
-      .attr('height', height + geometry.top + geometry.bottom)
-      .append('g')
-      .attr('transform', `translate(${geometry.left},${geometry.top})`)
+      const min = Math.max(0, averageGDPValue - 30000)
+      const max = Math.min(140000, averageGDPValue + 30000)
 
-    // X axis
-    const x = d3
-      .scaleBand()
-      .range([0, width])
-      .domain(GDPArray.map((d) => d.year))
-      .padding(0.2)
+      let svg = null
+      // Append the svg object to the body of the page
+      svg = d3
+        .select(refSVG.current)
+        .append('svg')
+        .attr('width', width + geometry.left + geometry.right)
+        .attr('height', height + geometry.top + geometry.bottom)
+        .append('g')
+        .attr('transform', `translate(${geometry.left},${geometry.top})`)
 
-    // Y axis
-    const y = d3.scaleLinear().domain([7000, 140000]).range([height, 0])
-    svg.append('g').call(d3.axisLeft(y)).style('font-size', '14px')
+      // X axis
+      const x = d3
+        .scaleBand()
+        .range([0, width])
+        .domain(GDPArray.map((d) => d.year))
+        .padding(0.2)
 
-    svg
-      .append('g')
-      .attr('transform', `translate(0, ${height})`)
-      .call(
-        d3
-          .axisBottom(x)
-          .tickSize(10) // Adjust the size of ticks
-          .tickPadding(10) // Adjust the padding between ticks and labels
-      )
-      .selectAll('text')
-      .attr('transform', 'translate(-10,0)rotate(-45)')
-      .style('text-anchor', 'end')
-      .style('font-size', '18px')
+      // Y axis
+      const y = d3.scaleLinear().domain([min, max]).range([height, 0])
+      svg.append('g').call(d3.axisLeft(y)).style('font-size', '14px')
 
-    // Bars
-    svg
-      .selectAll('mybar')
-      .data(GDPArray)
-      .join('rect')
-      .attr('x', (d) => x(d.year))
-      .attr('y', (d) => y(d.value))
-      .attr('width', x.bandwidth())
-      .attr('height', (d) => height - y(d.value))
-      .attr('fill', '#5f0f40')
-  }, [GDPArray])
+      svg
+        .append('g')
+        .attr('transform', `translate(0, ${height})`)
+        .call(
+          d3
+            .axisBottom(x)
+            .tickSize(10) // Adjust the size of ticks
+            .tickPadding(10) // Adjust the padding between ticks and labels
+        )
+        .selectAll('text')
+        .attr('transform', 'translate(-10,0)rotate(-45)')
+        .style('text-anchor', 'end')
+        .style('font-size', '18px')
+
+      // Bars
+      svg
+        .selectAll('mybar')
+        .data(GDPArray)
+        .join('rect')
+        .attr('x', (d) => x(d.year))
+        .attr('y', (d) => y(d.value))
+        .attr('width', x.bandwidth())
+        .attr('height', (d) => height - y(d.value))
+        .attr('fill', 'dodgerblue')
+    }
+  }, [GDPArray, averageGDPValue])
 
   return (
     <div className='graphbox' ref={graphcontainer}>

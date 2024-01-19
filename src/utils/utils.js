@@ -34,3 +34,16 @@ export const getLastCommonEntry = (arr1, arr2) => {
   // Return -1 if no common non-empty entry is found
   return -1
 }
+
+// Get average value of array
+export const calculateAverage = (array) => {
+  var total = 0
+  var count = 0
+
+  array.forEach((item) => {
+    total += +item
+    count++
+  })
+  const average = Math.floor(total / count)
+  return average
+}
