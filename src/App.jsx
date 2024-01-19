@@ -1,6 +1,6 @@
 import { Routes, Route, Outlet } from 'react-router-dom'
 import Home from './pages/Home'
-import Countries from './pages/country/Countries'
+import Countries from './pages/Countries'
 import Country from './pages/country/Country'
 import Error404 from './pages/Error404'
 import Header from './components/Header'

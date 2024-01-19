@@ -9,8 +9,12 @@ const currentCountries = getCountries()
 
 const allCountriesReducer = (state = initialState, action) => {
   if (currentCountries.length > 0) {
+    // Originaly ordered by code GB > United Kingdom; name is preferred
+    const reorderedCountries = currentCountries.sort((a, b) =>
+      a.name > b.name ? 1 : -1
+    )
     initialState = {
-      allCountries: currentCountries
+      allCountries: reorderedCountries
     }
   }
 
