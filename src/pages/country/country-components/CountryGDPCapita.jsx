@@ -60,7 +60,6 @@ const CountryGDPCapita = ({ cca3 }) => {
       const min = Math.max(0, averageGDPValue - 20000)
       const max = Math.min(140000, averageGDPValue + 20000)
       const getColour = (d) => {
-        console.log(d)
         d = +d
         let color
 
@@ -73,8 +72,16 @@ const CountryGDPCapita = ({ cca3 }) => {
         } else {
           color = '#ef6060'
         }
-
         return color
+      }
+
+      const getCSSClasses = (d) => {
+        // Empty bar
+        if (d == 0 || d === '') {
+          return 'uniqueBarName empty-bar'
+        } else {
+          return 'uniqueBarName'
+        }
       }
 
       // Remove existing SVG element or clear its content
@@ -107,8 +114,8 @@ const CountryGDPCapita = ({ cca3 }) => {
         .call(
           d3
             .axisBottom(x)
-            .tickSize(10) // Adjust the size of ticks
-            .tickPadding(10) // Adjust the padding between ticks and labels
+            .tickSize(10) // Size of ticks
+            .tickPadding(10) // Padding between ticks and labels
         )
         .selectAll('text')
         .attr('transform', 'translate(-10,0)rotate(-45)')
@@ -117,7 +124,7 @@ const CountryGDPCapita = ({ cca3 }) => {
 
       // Bars
       svg
-        .selectAll('anyUniqueSelector')
+        .selectAll('.uniqueBarName')
         .data(GDPArray)
         .join('rect')
         .attr('x', (d) => x(d.year))
@@ -125,6 +132,7 @@ const CountryGDPCapita = ({ cca3 }) => {
         .attr('width', x.bandwidth())
         .attr('height', (d) => height - y(d.value))
         .attr('fill', (d) => getColour(d.value))
+        .attr('class', (d) => getCSSClasses(d.value))
     }
   }
   useEffect(() => {
@@ -132,7 +140,7 @@ const CountryGDPCapita = ({ cca3 }) => {
   }, [GDPArray, averageGDPValue])
 
   return (
-    <div className='graphbox' ref={graphcontainer}>
+    <div className='gdpgraph' ref={graphcontainer}>
       <svg width={1296} height={500} id='barchart' ref={refSVG} />
     </div>
   )

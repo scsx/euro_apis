@@ -119,5 +119,11 @@
         }
       }
     }
+
+    &.gdpcapita {
+      rect.uniqueBarName.empty-bar {
+        position: relative;
+      }
+    }
   }
 }
