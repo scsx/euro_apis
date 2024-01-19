@@ -14,7 +14,6 @@ import ErrorBoundaryComponent from '../../components/ErrorBoundaryComponent'
 import CountryDetails from './country-components/CountryDetails'
 import CountryComparison from './country-components/CountryComparison'
 import CountryCPI from './country-components/CountryCPI'
-import CountryPopDensity from './country-components/CountryPopDensity'
 import CountryTFR from './country-components/CountryTFR'
 import CountryOnePersonHouseholds from './country-components/CountryOnePersonHouseholds'
 import CountryGDPCapita from './country-components/CountryGDPCapita'
@@ -149,20 +148,6 @@ const Country = () => {
         </ErrorBoundary>
       </section>
 
-      <section className='popdensity'>
-        <h2 ref={refIndicator2}>
-          Population density <small>per sq. km</small>
-        </h2>
-        <ErrorBoundary
-          FallbackComponent={ErrorBoundaryComponent}
-          onReset={() => {
-            // reset the state of your app here
-          }}
-          resetKeys={['someKey']}>
-          <CountryPopDensity cca3={countryData1.cca3} />
-        </ErrorBoundary>
-      </section>
-
       <section className='fertility'>
         <h2 ref={refIndicator3}>Total fertility rate</h2>
         <ErrorBoundary
@@ -191,7 +176,7 @@ const Country = () => {
 
       <section className='gdpcapita'>
         <h2 ref={refIndicator5}>
-          One person households <small>percentage</small>
+          GDP per capita <small>percentage</small>
         </h2>
         <ErrorBoundary
           FallbackComponent={ErrorBoundaryComponent}
