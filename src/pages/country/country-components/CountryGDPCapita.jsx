@@ -50,15 +50,35 @@ const CountryGDPCapita = ({ cca3 }) => {
     fetchData()
   }, [cca3, averageGDPValue])
 
-  useEffect(() => {
+  const draw = () => {
     if (GDPArray.length > 0) {
       // Set the dimensions and geometrys of the graph
       const geometry = { top: 30, right: 30, bottom: 100, left: 60 },
         width = 1296 - geometry.left - geometry.right,
-        height = 800 - geometry.top - geometry.bottom
+        height = 500 - geometry.top - geometry.bottom
 
-      const min = Math.max(0, averageGDPValue - 30000)
-      const max = Math.min(140000, averageGDPValue + 30000)
+      const min = Math.max(0, averageGDPValue - 20000)
+      const max = Math.min(140000, averageGDPValue + 20000)
+      const getColour = (d) => {
+        console.log(d)
+        d = +d
+        let color
+
+        if (d > 40000) {
+          color = '#151b54'
+        } else if (d > 25000) {
+          color = '#55a855'
+        } else if (d > 15000) {
+          color = '#fab942'
+        } else {
+          color = '#ef6060'
+        }
+
+        return color
+      }
+
+      // Remove existing SVG element or clear its content
+      d3.select(refSVG.current).selectAll('svg').remove()
 
       let svg = null
       // Append the svg object to the body of the page
@@ -97,20 +117,23 @@ const CountryGDPCapita = ({ cca3 }) => {
 
       // Bars
       svg
-        .selectAll('mybar')
+        .selectAll('anyUniqueSelector')
         .data(GDPArray)
         .join('rect')
         .attr('x', (d) => x(d.year))
         .attr('y', (d) => y(d.value))
         .attr('width', x.bandwidth())
         .attr('height', (d) => height - y(d.value))
-        .attr('fill', 'dodgerblue')
+        .attr('fill', (d) => getColour(d.value))
     }
+  }
+  useEffect(() => {
+    draw()
   }, [GDPArray, averageGDPValue])
 
   return (
     <div className='graphbox' ref={graphcontainer}>
-      <svg width={1296} height={800} id='barchart' ref={refSVG} />
+      <svg width={1296} height={500} id='barchart' ref={refSVG} />
     </div>
   )
 }

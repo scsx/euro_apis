@@ -109,6 +109,12 @@ const Country = () => {
           <ListGroup className='indicatorlist mt-3'>
             <ListGroup.Item
               onClick={() => {
+                scrollToEl(refIndicator5)
+              }}>
+              GDP per capita
+            </ListGroup.Item>
+            <ListGroup.Item
+              onClick={() => {
                 scrollToEl(refIndicator1)
               }}>
               Consumer price index
@@ -131,10 +137,23 @@ const Country = () => {
               }}>
               One person households
             </ListGroup.Item>
-            <ListGroup.Item>GDP per capita</ListGroup.Item>
           </ListGroup>
         </Col>
       </Row>
+
+      <section className='gdpcapita'>
+        <h2 ref={refIndicator5}>
+          GDP per capita <small>percentage</small>
+        </h2>
+        <ErrorBoundary
+          FallbackComponent={ErrorBoundaryComponent}
+          onReset={() => {
+            // reset the state of your app here
+          }}
+          resetKeys={['someKey']}>
+          <CountryGDPCapita cca3={countryData1.cca3} />
+        </ErrorBoundary>
+      </section>
 
       <section className='cpi'>
         <h2 ref={refIndicator1}>Consumer price index</h2>
@@ -171,20 +190,6 @@ const Country = () => {
           }}
           resetKeys={['someKey']}>
           <CountryOnePersonHouseholds cca3={countryData1.cca3} />
-        </ErrorBoundary>
-      </section>
-
-      <section className='gdpcapita'>
-        <h2 ref={refIndicator5}>
-          GDP per capita <small>percentage</small>
-        </h2>
-        <ErrorBoundary
-          FallbackComponent={ErrorBoundaryComponent}
-          onReset={() => {
-            // reset the state of your app here
-          }}
-          resetKeys={['someKey']}>
-          <CountryGDPCapita cca3={countryData1.cca3} />
         </ErrorBoundary>
       </section>
     </Page>
