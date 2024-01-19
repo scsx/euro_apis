@@ -14,9 +14,9 @@ import ErrorBoundaryComponent from '../../components/ErrorBoundaryComponent'
 import CountryDetails from './country-components/CountryDetails'
 import CountryComparison from './country-components/CountryComparison'
 import CountryCPI from './country-components/CountryCPI'
-import CountryPopDensity from './country-components/CountryPopDensity'
 import CountryTFR from './country-components/CountryTFR'
 import CountryOnePersonHouseholds from './country-components/CountryOnePersonHouseholds'
+import CountryGDPCapita from './country-components/CountryGDPCapita'
 
 import './Country.scss'
 
@@ -38,7 +38,6 @@ const Country = () => {
   const navigateDetectedRef = useRef(false)
 
   useEffect(() => {
-    console.log('render')
     const fetchData = async () => {
       try {
         const fetchedDetails = await getCountryDetails(countryId)
@@ -64,6 +63,7 @@ const Country = () => {
   const refIndicator2 = useRef(null)
   const refIndicator3 = useRef(null)
   const refIndicator4 = useRef(null)
+  const refIndicator5 = useRef(null)
   const scrollToEl = (ref) => {
     ref.current.scrollIntoView({ behavior: 'smooth' })
   }
@@ -148,20 +148,6 @@ const Country = () => {
         </ErrorBoundary>
       </section>
 
-      <section className='popdensity'>
-        <h2 ref={refIndicator2}>
-          Population density <small>per sq. km</small>
-        </h2>
-        <ErrorBoundary
-          FallbackComponent={ErrorBoundaryComponent}
-          onReset={() => {
-            // reset the state of your app here
-          }}
-          resetKeys={['someKey']}>
-          <CountryPopDensity cca3={countryData1.cca3} />
-        </ErrorBoundary>
-      </section>
-
       <section className='fertility'>
         <h2 ref={refIndicator3}>Total fertility rate</h2>
         <ErrorBoundary
@@ -185,6 +171,20 @@ const Country = () => {
           }}
           resetKeys={['someKey']}>
           <CountryOnePersonHouseholds cca3={countryData1.cca3} />
+        </ErrorBoundary>
+      </section>
+
+      <section className='gdpcapita'>
+        <h2 ref={refIndicator5}>
+          GDP per capita <small>percentage</small>
+        </h2>
+        <ErrorBoundary
+          FallbackComponent={ErrorBoundaryComponent}
+          onReset={() => {
+            // reset the state of your app here
+          }}
+          resetKeys={['someKey']}>
+          <CountryGDPCapita cca3={countryData1.cca3} />
         </ErrorBoundary>
       </section>
     </Page>
