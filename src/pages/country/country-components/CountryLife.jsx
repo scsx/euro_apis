@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
-import data from '../../../data/other/unece/Life-expectancy-combined-last-three-years.json'
+import data from '../../../data/other/unece/Life-expectancy-combined-all.json'
 import Alert from 'react-bootstrap/Alert'
 import Loading from '../../../components/Loading'
+import Chart from 'chart.js/auto'
 import { Line } from 'react-chartjs-2'
 
 const CountryLife = ({ cca3 }) => {
   const [loading, setLoading] = useState(true)
-  const [noDataMsg, setNoDataMsg] = useState('')
+  const [noDataMsg, setNoDataMsg] = useState(null)
   const [menData, setMenData] = useState([])
   const [womenData, setWomenData] = useState([])
   const [dataChart, setDataChart] = useState({})
@@ -29,13 +30,13 @@ const CountryLife = ({ cca3 }) => {
           }
           setMenData(tempMenData)
           setWomenData(tempWomenData)
+          setNoDataMsg(null)
         } else {
-          setNoDataMsg('No data for this country.')
+          console.log('No data for this country.')
         }
       } catch (error) {
         console.log('Error loading data:', error)
-      } finally {
-        setLoading(false)
+        setNoDataMsg('No data for this country.')
       }
     }
 
@@ -57,7 +58,25 @@ const CountryLife = ({ cca3 }) => {
   }
 
   useEffect(() => {
-    const labels = ['2020', '2021', '2022']
+    const labels = [
+      '2005',
+      '2006',
+      '2007',
+      '2008',
+      '2009',
+      '2010',
+      '2011',
+      '2012',
+      '2013',
+      '2014',
+      '2015',
+      '2016',
+      '2017',
+      '2018',
+      '2019',
+      '2020',
+      '2021'
+    ]
 
     if (
       labels.length > 0 &&
@@ -87,14 +106,15 @@ const CountryLife = ({ cca3 }) => {
           }
         ]
       })
+
+      setLoading(false)
     }
   }, [menData, womenData])
 
   return (
     <>
-      {/* {loading && <Loading />}
-
-      {noDataMsg.length > 0 && <Alert variant='warning'>{noDataMsg}</Alert>} */}
+      {loading && <Loading />}
+      {noDataMsg && <Alert variant='warning'>{noDataMsg}</Alert>}
       {Object.entries(dataChart).length > 0 &&
         Object.entries(options).length > 0 &&
         menData.length > 0 &&
