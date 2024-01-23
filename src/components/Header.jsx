@@ -33,6 +33,9 @@ const Header = () => {
               <NavDropdown.Item as='span'>
                 <NavLink to='/fullpage'>Fullpage</NavLink>
               </NavDropdown.Item>
+              <NavDropdown.Item as='span'>
+                <NavLink to='/life-expectancy'>Life Expectancy</NavLink>
+              </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href='/distritos-demografia'>
                 Demografia
