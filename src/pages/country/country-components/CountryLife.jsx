@@ -1,28 +1,42 @@
 import { useState, useEffect } from 'react'
-import data from '../../../data/other/unece/Proportion-one-person-households.json'
+import data from '../../../data/other/unece/Life-expectancy-combined-last-three-years.json'
 import Alert from 'react-bootstrap/Alert'
 import Loading from '../../../components/Loading'
 
-const CountryOnePersonHouseholds = ({ cca3 }) => {
+const CountryLife = ({ cca3 }) => {
   const [loading, setLoading] = useState(true)
-  const [years, setYears] = useState([])
-  const [values, setValues] = useState([])
   const [noDataMsg, setNoDataMsg] = useState('')
-  const description = data.desc
+  const [menData, setMenData] = useState([])
+  const [womenData, setWomenData] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const filteredArray = data.DataTable.filter(
-          (entry) => entry.Country.Alpha3Code === cca3
-        )
+        const filteredArray = data.all.filter((entry) => entry.country === cca3)
 
         if (filteredArray.length > 0) {
           await new Promise((resolve) => setTimeout(resolve, 1000))
 
-          setYears(filteredArray[0]?.Periods || [])
-          setValues(filteredArray[0]?.Values || [])
-          setNoDataMsg('')
+          let tempMenData = []
+          let tempWomenData = []
+
+          for (const [key, value] of Object.entries(filteredArray[0])) {
+            if (key !== 'country') {
+              let menYearObj = {
+                year: key,
+                lifeExpectancy: value.men
+              }
+              let womenYearObj = {
+                year: key,
+                lifeExpectancy: value.women
+              }
+              tempMenData.push(menYearObj)
+              tempWomenData.push(womenYearObj)
+            }
+          }
+
+          setMenData(tempMenData)
+          setWomenData(tempWomenData)
         } else {
           setNoDataMsg('No data for this country.')
         }
@@ -38,33 +52,14 @@ const CountryOnePersonHouseholds = ({ cca3 }) => {
 
   return (
     <>
-      {loading && <Loading />}
-      <p className='description'>{description}</p>
+      {/* {loading && <Loading />}
 
-      {noDataMsg.length > 0 && <Alert variant='warning'>{noDataMsg}</Alert>}
+      {noDataMsg.length > 0 && <Alert variant='warning'>{noDataMsg}</Alert>} */}
 
-      <table className='table table-bordered text-center'>
-        {years.length > 0 && (
-          <thead>
-            <tr>
-              {years.map((year) => {
-                return <th key={year}>{year.slice(2)}</th>
-              })}
-            </tr>
-          </thead>
-        )}
-        {values.length > 0 && (
-          <tbody>
-            <tr>
-              {values.map((val, i) => {
-                return <td key={val + i}>{val}</td>
-              })}
-            </tr>
-          </tbody>
-        )}
-      </table>
+      {JSON.stringify(menData)}
+      {JSON.stringify(womenData)}
     </>
   )
 }
 
-export default CountryOnePersonHouseholds
+export default CountryLife

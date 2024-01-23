@@ -21,12 +21,19 @@ const Countries = () => {
             countryList.map((country) => {
               return (
                 <div className='countrieslist__item' key={country.code}>
-                  <div className='countrieslist__flag' style={{
-                    backgroundImage: `url(${getFlagcdnFlag(country.code, 'w160')})`
-                  }}></div>
                   <Link to={country.code} className='countrieslist__link'>
-                    {country.name}
-                    <small>{country.code}</small>
+                    <div
+                      className='countrieslist__flag'
+                      style={{
+                        backgroundImage: `url(${getFlagcdnFlag(
+                          country.code,
+                          'w160'
+                        )})`
+                      }}></div>
+                    <div className='countrieslist__linktext'>
+                      {country.name}
+                      <small>{country.code}</small>
+                    </div>
                   </Link>
                 </div>
               )

@@ -17,6 +17,7 @@ import CountryCPI from './country-components/CountryCPI'
 import CountryTFR from './country-components/CountryTFR'
 import CountryOnePersonHouseholds from './country-components/CountryOnePersonHouseholds'
 import CountryGDPCapita from './country-components/CountryGDPCapita'
+import CountryLife from './country-components/CountryLife'
 
 import './Country.scss'
 
@@ -141,7 +142,7 @@ const Country = () => {
         </Col>
       </Row>
 
-      <section className='gdpcapita'>
+      {/* <section className='gdpcapita'>
         <h2 ref={refIndicator5}>
           GDP per capita <small>percentage</small>
         </h2>
@@ -153,7 +154,7 @@ const Country = () => {
           resetKeys={['someKey']}>
           <CountryGDPCapita cca3={countryData1.cca3} />
         </ErrorBoundary>
-      </section>
+      </section> */}
 
       <section className='cpi'>
         <h2 ref={refIndicator1}>Consumer price index</h2>
@@ -190,6 +191,20 @@ const Country = () => {
           }}
           resetKeys={['someKey']}>
           <CountryOnePersonHouseholds cca3={countryData1.cca3} />
+        </ErrorBoundary>
+      </section>
+
+      <section className='households'>
+        <h2>
+          Life  - Check refs and anchor
+        </h2>
+        <ErrorBoundary
+          FallbackComponent={ErrorBoundaryComponent}
+          onReset={() => {
+            // reset the state of your app here
+          }}
+          resetKeys={['someKey']}>
+          <CountryLife cca3={countryData1.cca3} />
         </ErrorBoundary>
       </section>
     </Page>

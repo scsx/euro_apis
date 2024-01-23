@@ -28,6 +28,10 @@
     }
 
     &__link {
+      display: flex;
+    }
+
+    &__linktext {
       padding-left: 1rem;
       font-size: 1.5rem;
       font-family: 'RestoraBold';
