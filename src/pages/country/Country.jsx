@@ -58,13 +58,14 @@ const Country = () => {
     countryToCompare = true
   }
 
-  // Indicators scroll and back to top
+  // Indicators scroll and back to top; declaring multiple const at once.
   const refTop = useRef(null)
-  const refIndicator1 = useRef(null)
-  const refIndicator2 = useRef(null)
-  const refIndicator3 = useRef(null)
-  const refIndicator4 = useRef(null)
-  const refIndicator5 = useRef(null)
+  const refIndicator1 = useRef(null),
+    refIndicator2 = useRef(null),
+    refIndicator3 = useRef(null),
+    refIndicator4 = useRef(null),
+    refIndicator5 = useRef(null),
+    refIndicator6 = useRef(null)
   const scrollToEl = (ref) => {
     ref.current.scrollIntoView({ behavior: 'smooth' })
   }
@@ -138,6 +139,12 @@ const Country = () => {
               }}>
               One person households
             </ListGroup.Item>
+            <ListGroup.Item
+              onClick={() => {
+                scrollToEl(refIndicator6)
+              }}>
+              Life expectancy
+            </ListGroup.Item>
           </ListGroup>
         </Col>
       </Row>
@@ -194,10 +201,8 @@ const Country = () => {
         </ErrorBoundary>
       </section>
 
-      <section className='households'>
-        <h2>
-          Life  - Check refs and anchor
-        </h2>
+      <section className='lifeexpectancy'>
+        <h2 ref={refIndicator6}>Life expectancy</h2>
         <ErrorBoundary
           FallbackComponent={ErrorBoundaryComponent}
           onReset={() => {

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import data from '../../../data/other/unece/Life-expectancy-combined-last-three-years.json'
 import Alert from 'react-bootstrap/Alert'
 import Loading from '../../../components/Loading'
-import Chart from 'chart.js/auto'
 import { Line } from 'react-chartjs-2'
 
 const CountryLife = ({ cca3 }) => {
@@ -51,7 +50,7 @@ const CountryLife = ({ cca3 }) => {
         position: 'top'
       },
       title: {
-        display: true,
+        display: false,
         text: 'Chart.js Line Chart'
       }
     }
@@ -75,16 +74,16 @@ const CountryLife = ({ cca3 }) => {
             data: labels.map((year, index) => {
               return menData[index] !== '' ? menData[index] : null
             }),
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)'
+            borderColor: 'rgb(53, 162, 235)',
+            backgroundColor: 'rgba(53, 162, 235, 0.5)'
           },
           {
             label: 'Women',
             data: labels.map((year, index) => {
               return womenData[index] !== '' ? womenData[index] : null
             }),
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.5)'
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)'
           }
         ]
       })
