@@ -5,6 +5,7 @@
 - React + Vite
 - react-router-dom
 - react-redux
+- chart.js & react-chartjs-2
 - [https://restcountries.com/](https://restcountries.com/)
 - [https://w3.unece.org/PXWeb/en/TableDomains/](https://w3.unece.org/PXWeb/en/TableDomains/)
 - [https://getbootstrap.com](https://getbootstrap.com)
