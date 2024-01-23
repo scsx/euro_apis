@@ -149,7 +149,7 @@ const Country = () => {
         </Col>
       </Row>
 
-      {/* <section className='gdpcapita'>
+      <section className='gdpcapita'>
         <h2 ref={refIndicator5}>
           GDP per capita <small>percentage</small>
         </h2>
@@ -161,7 +161,7 @@ const Country = () => {
           resetKeys={['someKey']}>
           <CountryGDPCapita cca3={countryData1.cca3} />
         </ErrorBoundary>
-      </section> */}
+      </section>
 
       <section className='cpi'>
         <h2 ref={refIndicator1}>Consumer price index</h2>

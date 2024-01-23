@@ -32,11 +32,13 @@ const CountryLife = ({ cca3 }) => {
           setWomenData(tempWomenData)
           setNoDataMsg(null)
         } else {
-          console.log('No data for this country.')
+          setNoDataMsg('No data for this country.')
+          setLoading(false)
         }
       } catch (error) {
         console.log('Error loading data:', error)
         setNoDataMsg('No data for this country.')
+        setLoading(false)
       }
     }
 
@@ -46,9 +48,17 @@ const CountryLife = ({ cca3 }) => {
   // Build graph
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top'
+        position: 'top',
+        labels: {
+          boxHeight: 20,
+          color: 'red'
+        },
+        padding: {
+          bottom: 80 // n funciona
+        }
       },
       title: {
         display: false,
@@ -56,6 +66,10 @@ const CountryLife = ({ cca3 }) => {
       }
     }
   }
+
+  /* Chart.Legend.prototype.afterFit = function() {
+    this.height = this.height + 50;
+} */
 
   useEffect(() => {
     const labels = [
@@ -112,14 +126,14 @@ const CountryLife = ({ cca3 }) => {
   }, [menData, womenData])
 
   return (
-    <>
+    <div className='lifechart'>
       {loading && <Loading />}
       {noDataMsg && <Alert variant='warning'>{noDataMsg}</Alert>}
       {Object.entries(dataChart).length > 0 &&
         Object.entries(options).length > 0 &&
         menData.length > 0 &&
         womenData.length > 0 && <Line options={options} data={dataChart} />}
-    </>
+    </div>
   )
 }
 

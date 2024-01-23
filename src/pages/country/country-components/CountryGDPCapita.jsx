@@ -130,7 +130,11 @@ const CountryGDPCapita = ({ cca3 }) => {
         .attr('x', (d) => x(d.year))
         .attr('y', (d) => y(d.value))
         .attr('width', x.bandwidth())
-        .attr('height', (d) => height - y(d.value))
+        .attr('height', (d) => {
+          if (d.value) {
+            return height - y(d.value)
+          }
+        })
         .attr('fill', (d) => getColour(d.value))
         .attr('class', (d) => getCSSClasses(d.value))
     }
