@@ -20,7 +20,7 @@ const LifeExpectancy = () => {
         position: 'top',
         align: 'start',
         labels: {
-          boxHeight: 10,
+          boxHeight: 15,
           color: 'black'
         }
       }
@@ -34,11 +34,13 @@ const LifeExpectancy = () => {
         setAllYears(menData.Periods)
 
         let datasetsTemp = menData.DataTable.map((entry) => {
+          console.log(entry)
           let countryCode = entry.Country.Alpha3Code
+          let countryName = entry.Country.Name
           let countryColor = getRandomColor()
 
           let countryObj = {
-            label: countryCode,
+            label: countryName,
             borderColor: countryColor.rgb,
             backgroundColor: countryColor.rgba
           }
@@ -61,9 +63,7 @@ const LifeExpectancy = () => {
             })
 
             countryObj.data = combinedValuesArrayTemp
-          } else {
-            countryObj.data = []
-          }
+          } 
 
           return countryObj
         })
