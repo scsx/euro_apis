@@ -41,7 +41,6 @@
     color: var(--bs-navbar-brand-color);
 
     a {
-      color: var(--bs-navbar-color);
       font-family: 'PoppinsSemiBold';
       color: var(--bs-navbar-brand-color);
 
@@ -56,5 +55,15 @@
     left: -1px;
     border-radius: 0;
     border-color: $bordercolor1;
+
+    .dropdown-item {
+      a {
+        color: var(--bs-navbar-brand-color);
+
+        &.active {
+          color: dodgerblue;
+        }
+      }
+    }
   }
 }

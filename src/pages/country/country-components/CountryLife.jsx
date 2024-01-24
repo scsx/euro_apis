@@ -54,7 +54,7 @@ const CountryLife = ({ cca3 }) => {
         position: 'top',
         labels: {
           boxHeight: 20,
-          color: 'red'
+          color: '#333'
         },
         padding: {
           bottom: 80 // n funciona

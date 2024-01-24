@@ -9,14 +9,16 @@ import './LifeExpectancy.scss'
 
 const LifeExpectancy = () => {
   const [allYears, setAllYears] = useState([])
-  const [datasetsArray, setDatasetsArray] = useState([])
+  const [datasets, setDatasets] = useState([])
   const [dataChart, setDataChart] = useState({})
 
   const graphOptions = {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        onClick: (e, legendItem) => {console.log(legendItem.text)},
+        onClick: (_, legendItem) => {
+          handleFilterCountries(legendItem.text)
+        }, // "e" is not needed, _ used
         position: 'top',
         align: 'start',
         labels: {
@@ -27,6 +29,10 @@ const LifeExpectancy = () => {
     }
   }
 
+  const handleFilterCountries = (country) => {
+    console.log(country)
+  }
+
   // Work data
   useEffect(() => {
     const processData = () => {
@@ -34,7 +40,6 @@ const LifeExpectancy = () => {
         setAllYears(menData.Periods)
 
         let datasetsTemp = menData.DataTable.map((entry) => {
-          console.log(entry)
           let countryCode = entry.Country.Alpha3Code
           let countryName = entry.Country.Name
           let countryColor = getRandomColor()
@@ -50,7 +55,8 @@ const LifeExpectancy = () => {
           )
 
           if (womenDataTemp) {
-            let combinedValuesArrayTemp = allYears.map((year, index) => {
+            let combinedValuesArrayTemp = allYears.map((_, index) => {
+              // "year" is not needed, _ used
               let menValue = entry.Values[index]
               let womenValue = womenDataTemp.Values[index]
 
@@ -63,12 +69,12 @@ const LifeExpectancy = () => {
             })
 
             countryObj.data = combinedValuesArrayTemp
-          } 
+          }
 
           return countryObj
         })
 
-        setDatasetsArray(datasetsTemp)
+        setDatasets(datasetsTemp)
       } catch (error) {
         console.error('Error processing data:', error)
       }
@@ -79,13 +85,13 @@ const LifeExpectancy = () => {
 
   // Build graph
   useEffect(() => {
-    if (allYears.length > 0 && datasetsArray.length > 0) {
+    if (allYears.length > 0 && datasets.length > 0) {
       setDataChart({
         labels: allYears,
-        datasets: datasetsArray
+        datasets: datasets
       })
     }
-  }, [allYears, datasetsArray])
+  }, [allYears, datasets])
 
   return (
     <Page classes='lifeexpectancy' fullWidth={false}>
