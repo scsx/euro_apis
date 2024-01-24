@@ -16,6 +16,7 @@ const LifeExpectancy = () => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
+        onClick: (e, legendItem) => {console.log(legendItem.text)},
         position: 'top',
         align: 'start',
         labels: {
@@ -52,6 +53,7 @@ const LifeExpectancy = () => {
               let womenValue = womenDataTemp.Values[index]
 
               if (menValue !== '' && womenValue !== '') {
+                // Average M vs F
                 return ((+menValue + +womenValue) / 2).toFixed(2)
               } else {
                 return null
@@ -87,7 +89,7 @@ const LifeExpectancy = () => {
 
   return (
     <Page classes='lifeexpectancy' fullWidth={false}>
-      <h1 className='mb-5'>Life expectancy combined</h1>
+      <h1 className='mb-5'>Life expectancy combined (M/F)</h1>
 
       <div className='graphbox'>
         {Object.entries(menData).length > 0 &&
