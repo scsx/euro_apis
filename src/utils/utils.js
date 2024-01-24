@@ -47,3 +47,14 @@ export const calculateAverage = (array) => {
   const average = Math.floor(total / count)
   return average
 }
+
+export const getRandomColor = (opacity = false) => {
+  const randomValue = () => Math.floor(Math.random() * 256)
+  const red = randomValue()
+  const green = randomValue()
+  const blue = randomValue()
+  return {
+    rgb: `rgb(${red},${green},${blue})`,
+    rgba: `rgba(${red},${green},${blue},${opacity ? opacity : '0.5'})`
+  }
+}

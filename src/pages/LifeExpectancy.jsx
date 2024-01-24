@@ -4,6 +4,8 @@ import menData from '../data/other/unece/Life-expectancy-men.json'
 import womenData from '../data/other/unece/Life-expectancy-women.json'
 import Chart from 'chart.js/auto'
 import { Line } from 'react-chartjs-2'
+import { getRandomColor } from '../utils/utils'
+import './LifeExpectancy.scss'
 
 const LifeExpectancy = () => {
   const [allYears, setAllYears] = useState([])
@@ -11,76 +13,73 @@ const LifeExpectancy = () => {
   const [dataChart, setDataChart] = useState({})
 
   const graphOptions = {
-    responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top',
+        align: 'start',
         labels: {
           boxHeight: 10,
           color: 'black'
         }
-      },
-      title: {
-        display: false,
-        text: 'Chart.js Line Chart'
       }
     }
   }
 
   // Work data
   useEffect(() => {
-    // Years
-    setAllYears(menData.Periods)
+    const processData = () => {
+      try {
+        setAllYears(menData.Periods)
 
-    // Values
-    let datasetsTemp = []
-    menData.DataTable.map((entry, index) => {
-      let countryCode = entry.Country.Alpha3Code
+        let datasetsTemp = menData.DataTable.map((entry) => {
+          let countryCode = entry.Country.Alpha3Code
+          let countryColor = getRandomColor()
 
-      let countryObj = {
-        label: countryCode,
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)'
-      }
+          let countryObj = {
+            label: countryCode,
+            borderColor: countryColor.rgb,
+            backgroundColor: countryColor.rgba
+          }
 
-      let womenDataTemp = womenData.DataTable.filter(
-        (entry) => entry.Country.Alpha3Code === countryCode
-      )
+          let womenDataTemp = womenData.DataTable.find(
+            (womenEntry) => womenEntry.Country.Alpha3Code === countryCode
+          )
 
-      let combinedValuesArrayTemp = []
-      entry.Values.map((year, index) => {
-        if (year !== '' && womenDataTemp[0].Values[index] !== '') {
-          let averageLifeExpectancy = (
-            (+year + +womenDataTemp[0].Values[index]) /
-            2
-          ).toFixed(2)
-          combinedValuesArrayTemp.push(averageLifeExpectancy)
-        } else {
-          combinedValuesArrayTemp.push('')
-        }
-      })
+          if (womenDataTemp) {
+            let combinedValuesArrayTemp = allYears.map((year, index) => {
+              let menValue = entry.Values[index]
+              let womenValue = womenDataTemp.Values[index]
 
-      // countryObj.data = combinedValuesArrayTemp
-      if (allYears.length > 0) {
-        countryObj.data = allYears.map((year, index) => {
-          console.log(year, combinedValuesArrayTemp[index])
-          return combinedValuesArrayTemp[index] !== ''
-            ? combinedValuesArrayTemp[index]
-            : null
+              if (menValue !== '' && womenValue !== '') {
+                return ((+menValue + +womenValue) / 2).toFixed(2)
+              } else {
+                return null
+              }
+            })
+
+            countryObj.data = combinedValuesArrayTemp
+          } else {
+            countryObj.data = []
+          }
+
+          return countryObj
         })
-      }
-      datasetsTemp.push(countryObj)
-    })
 
-    setDatasetsArray(datasetsTemp)
-  }, [])
+        setDatasetsArray(datasetsTemp)
+      } catch (error) {
+        console.error('Error processing data:', error)
+      }
+    }
+
+    processData()
+  }, [menData, womenData, allYears])
 
   // Build graph
   useEffect(() => {
     if (allYears.length > 0 && datasetsArray.length > 0) {
       setDataChart({
-        allYears,
+        labels: allYears,
         datasets: datasetsArray
       })
     }
@@ -88,11 +87,14 @@ const LifeExpectancy = () => {
 
   return (
     <Page classes='lifeexpectancy' fullWidth={false}>
-      <h1>LE</h1>
+      <h1 className='mb-5'>Life expectancy combined</h1>
+
       <div className='graphbox'>
-        {Object.entries(dataChart).length > 0 &&
+        {Object.entries(menData).length > 0 &&
+          Object.entries(womenData).length > 0 &&
+          Object.entries(dataChart).length > 0 &&
           Object.entries(graphOptions).length > 0 && (
-            <Line options={graphOptions} data={dataChart} />
+            <Line options={graphOptions} data={dataChart} redraw={true} />
           )}
       </div>
     </Page>
