@@ -94,7 +94,7 @@ const LifeExpectancy = () => {
   }, [allYears, datasets])
 
   return (
-    <Page classes='lifeexpectancy' fullWidth={false}>
+    <Page classes='lifeexpectancy'>
       <h1 className='mb-5'>Life expectancy combined (M/F)</h1>
 
       <div className='graphbox'>

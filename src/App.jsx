@@ -6,6 +6,7 @@ import Error404 from './pages/Error404'
 import Header from './components/Header'
 import FullPage from './pages/FullPage'
 import LifeExpectancy from './pages/LifeExpectancy'
+import AllBlocks from './pages/AllBlocks'
 import './App.scss'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path=':countryId' element={<Country />} />
         </Route>
         <Route path='/fullpage' element={<FullPage />} />
+        <Route path='/all-blocks' element={<AllBlocks />} />
         <Route path='/life-expectancy' element={<LifeExpectancy />} />
         {/* 404 page */}
         <Route path='*' element={<Error404 />} />

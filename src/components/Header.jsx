@@ -41,6 +41,11 @@ const Header = () => {
                 Demografia
               </NavDropdown.Item>
             </NavDropdown>
+            <NavDropdown title='Dev'>
+              <NavDropdown.Item as='span'>
+                <NavLink to='/all-blocks'>All Blocks</NavLink>
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className='justify-content-end'>

@@ -1,0 +1,21 @@
+.block {
+  position: relative;
+  padding: 3rem 0;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.blocksingletext {
+  text-align: center;
+
+  &__title {
+    font-size: 3rem;
+    letter-spacing: -1px;
+  }
+
+  &__text {
+    max-width: 600px;
+    margin: 2rem auto 0 auto;
+  }
+}

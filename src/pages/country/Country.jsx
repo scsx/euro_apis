@@ -71,7 +71,7 @@ const Country = () => {
   }
 
   return (
-    <Page classes='country' fullWidth={false}>
+    <Page classes='country'>
       <h1 ref={refTop}>{countryVisibleName}</h1>
 
       <Row>
