@@ -37,8 +37,8 @@ const Header = () => {
                 <NavLink to='/life-expectancy'>Life Expectancy</NavLink>
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href='/distritos-demografia'>
-                Demografia
+              <NavDropdown.Item href='/middle-ages-art'>
+                Middle Ages Art
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title='Dev'>

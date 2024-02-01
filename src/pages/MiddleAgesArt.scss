@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Rakkas&display=swap');
+
+$middletitles: #a9a596;
+$middlemargin: 6rem;
+
+.middleagesart {
+  background-color: black;
+  min-height: 100vh;
+  color: white;
+
+  .block__title {
+    font-family: 'Rakkas', serif;
+  }
+
+  .block__text {
+    font-family: 'Restora';
+  }
+
+  &__hero {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+
+    .block__title {
+      font-size: 8rem;
+      color: $middletitles;
+    }
+
+    .block__text {
+      font-size: 1.5rem;
+      line-height: 1.3;
+    }
+  }
+
+  &__early {
+    h2 {
+      color: $middletitles;
+    }
+  }
+
+  &__gothic {
+    margin-top: $middlemargin;
+
+    h2 {
+      color: $middletitles;
+    }
+  }
+
+  &__palatine {
+    margin-top: $middlemargin;
+    height: 66vh;
+    padding-top: 1px;
+    background-size: cover;
+    background-position: center center;
+
+    h3 {
+      font-size: 5rem;
+      text-align: right;
+      margin-top: 30%;
+
+      small {
+        font-family: inherit;
+        font-size: 50%;
+        display: block;
+      }
+    }
+  }
+
+  &__taming {
+    background-color: #904208;
+  }
+}

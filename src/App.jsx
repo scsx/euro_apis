@@ -7,6 +7,7 @@ import Header from './components/Header'
 import FullPage from './pages/FullPage'
 import LifeExpectancy from './pages/LifeExpectancy'
 import AllBlocks from './pages/AllBlocks'
+import MiddleAgesArt from './pages/MiddleAgesArt'
 import './App.scss'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/fullpage' element={<FullPage />} />
         <Route path='/all-blocks' element={<AllBlocks />} />
         <Route path='/life-expectancy' element={<LifeExpectancy />} />
+        <Route path='/middle-ages-art' element={<MiddleAgesArt />} />
         {/* 404 page */}
         <Route path='*' element={<Error404 />} />
       </Routes>

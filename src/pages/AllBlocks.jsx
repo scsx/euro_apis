@@ -15,8 +15,8 @@ let abbeyParagraph =
 
 let singleTextStyles = {
   backgroundPosition: 'top center',
-  paddingTop: '5rem',
-  paddingBottom: '5rem'
+  paddingTop: '12rem',
+  paddingBottom: '12rem'
 }
 
 const AllBlocks = () => {
@@ -42,7 +42,7 @@ const AllBlocks = () => {
         extrastyles={singleTextStyles}
       />
       <TextWithImage
-        title={"Château d'If, Frioul archipelago, Marseille, 16th century"}
+        title={"Château d'If, Frioul archipelago, Marseille"}
         text={chateauParagraph}
         image={'chateau-dif.jpg'}
         bgcolorText={'#fefaf2'}
