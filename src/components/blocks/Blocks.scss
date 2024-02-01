@@ -26,7 +26,7 @@
   text-align: center;
 }
 
-.block1text2image {
+.textwithimage {
   padding: 0;
 
   &__texthalf {
@@ -49,5 +49,21 @@
     max-width: 66.66%;
     max-height: 66vh;
     margin: auto;
+  }
+
+  &__text {
+    margin-left: 0;
+  }
+}
+
+// Custom
+.textwithimage.arles {
+  color: white;
+}
+.textwithimage.abbey {
+  color: #2a5913;
+
+  .textwithimage__imagehalf {
+    padding: 5rem 0;
   }
 }
