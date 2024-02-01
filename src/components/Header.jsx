@@ -29,7 +29,7 @@ const Header = () => {
             <Nav.Link as='span'>
               <NavLink to='/countries'>Countries</NavLink>
             </Nav.Link>
-            <NavDropdown title='Other'>
+            <NavDropdown title='Pages'>
               <NavDropdown.Item as='span'>
                 <NavLink to='/fullpage'>Fullpage</NavLink>
               </NavDropdown.Item>

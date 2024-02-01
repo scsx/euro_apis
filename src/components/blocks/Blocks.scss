@@ -4,19 +4,50 @@
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-.blocksingletext {
-  text-align: center;
 
   &__title {
     font-size: 3rem;
     letter-spacing: -1px;
+    line-height: 1.1;
   }
 
   &__text {
     max-width: 600px;
     margin: 2rem auto 0 auto;
     font-family: 'PoppinsSemiBold';
+  }
+
+  &__image {
+    display: block;
+  }
+}
+
+.blocksingletext {
+  text-align: center;
+}
+
+.block1text2image {
+  padding: 0;
+
+  &__texthalf {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: middle;
+  }
+
+  &__textcontent {
+    padding: 3rem;
+  }
+
+  &__imagehalf {
+    padding: 3rem 0;
+    display: flex;
+  }
+
+  &__image {
+    max-width: 66.66%;
+    max-height: 66vh;
+    margin: auto;
   }
 }
