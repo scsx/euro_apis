@@ -1,6 +1,6 @@
 import SingleText from '../components/blocks/singleText'
 import TextWithImage from '../components/blocks/TextWithImage'
-import palatineImage from '../../public/deco/palatine-chapel-1.jpg'
+import palatineImage from '/deco/palatine-chapel-1.jpg'
 import './MiddleAgesArt.scss'
 
 const heroStyle = {
