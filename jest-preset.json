@@ -1,0 +1,11 @@
+{
+  "preset": "babel-jest",
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest",
+    "\\.(scss)$": "<rootDir>/path-to-jest-transform-stub.js"
+  },
+  "moduleNameMapper": {
+    "\\.(scss)$": "identity-obj-proxy"
+  },
+  "testEnvironment": "jsdom"
+}

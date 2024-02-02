@@ -5,8 +5,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import { NavLink } from 'react-router-dom'
 import { HiOutlineBuildingLibrary } from 'react-icons/hi2'
 
-import './Header.scss'
-import CountrySelector from './CountrySelector'
+//import './Header.scss'
+//import CountrySelector from './CountrySelector'
 
 const Header = () => {
   return (
