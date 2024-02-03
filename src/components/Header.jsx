@@ -40,6 +40,9 @@ const Header = () => {
               <NavDropdown.Item href='/middle-ages-art'>
                 Middle Ages Art
               </NavDropdown.Item>
+              <NavDropdown.Item href='/video-gallery'>
+                Video Gallery
+              </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title='Dev'>
               <NavDropdown.Item as='span'>
