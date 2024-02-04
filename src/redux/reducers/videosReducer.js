@@ -1,17 +1,29 @@
-import * as types from '../actions/actionTypes'
+import { SET_ALL_VIDEOS, UPDATE_INDIVIDUAL_VIDEO } from '../actions/actionTypes'
 
 const initialState = {
   savedVideos: []
 }
 
 const videosReducer = (state = initialState, action) => {
-
   switch (action.type) {
-    case types.SET_SAVED_VIDEOS:
+    case SET_ALL_VIDEOS:
       return {
         ...state,
-        savedVideos: [...state.savedVideos, action.payload],
+        savedVideos: action.payload
       }
+    case UPDATE_INDIVIDUAL_VIDEO:
+      const updatedIndex = state.savedVideos.findIndex(
+        (video) => video.title === action.payload.title
+      )
+      if (updatedIndex !== -1) {
+        const updatedVideos = [...state.savedVideos]
+        updatedVideos[updatedIndex] = action.payload
+        return {
+          ...state,
+          savedVideos: updatedVideos
+        }
+      }
+      return state
     default:
       return state
   }

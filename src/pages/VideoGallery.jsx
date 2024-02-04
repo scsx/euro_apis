@@ -1,37 +1,55 @@
 import { useRef } from 'react'
 import ReactPlayer from 'react-player'
 import { useSelector, useDispatch } from 'react-redux'
-import { setSavedVideos } from '../redux/actions/setSavedVideos'
+import {
+  setAllVideos,
+  updateIndividualVideo
+} from '../redux/actions/videoActions'
 import Page from '../components/Page'
+
+const films = [
+  {
+    id: 1,
+    title: 'Barry Lyndon',
+    time: 0
+  },
+  {
+    id: 2,
+    title: 'Farewell to Europe',
+    time: 0
+  },
+  {
+    id: 3,
+    title: 'Ossessione',
+    time: 0
+  },
+  {
+    id: 4,
+    title: 'Vincere',
+    time: 0
+  }
+]
 
 const VideoGallery = () => {
   const video1 = useRef()
-
   const savedVideos = useSelector((state) => state.savedVideos)
   const dispatch = useDispatch()
 
-  const testArray = [
-    {
-      title: 'Film',
-      time: 12
-    }
-  ]
-  const testArray1 = [
-    {
-      title: 'Other',
-      time: 20
-    }
-  ]
-  const updateVideos = () => {
-    dispatch(setSavedVideos(testArray))
-  }
-  const updateVideos1 = () => {
-    dispatch(setSavedVideos(testArray1))
-  }
   const getVideos = () => {
     console.log(savedVideos)
   }
 
+  // Setting videos.
+  const handleSetAllVideos = () => {
+    const allVideos = films
+    dispatch(setAllVideos(allVideos))
+  }
+
+  // Example of updating an individual video
+  const handleUpdateIndividualVideo = () => {
+    const updatedVideo = { title: 'Vincere', time: 30 } // Updated video object
+    dispatch(updateIndividualVideo(updatedVideo))
+  }
 
   const videoPaused = () => {
     console.log('Video paused -> save to redux')
@@ -46,8 +64,13 @@ const VideoGallery = () => {
     <Page classes='videogal'>
       <h1 className='mb-5'>Videos</h1>
 
-      <button onClick={updateVideos}>save</button>
-      <button onClick={updateVideos1}>save1</button>
+      <div>
+        <button onClick={handleSetAllVideos}>Set All Videos</button>
+        <button onClick={handleUpdateIndividualVideo}>
+          Update Individual Video
+        </button>
+      </div>
+
       <button onClick={getVideos}>get</button>
 
       <div className='container'>
