@@ -1,16 +1,16 @@
 import * as types from '../actions/actionTypes'
 
 const initialState = {
-  videos: []
+  savedVideos: []
 }
 
 const videosReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case types.GET_VIDEOS_CURRENT_TIMES:
+    case types.SET_SAVED_VIDEOS:
       return {
         ...state,
-        videos: action.payload
+        savedVideos: [...state.savedVideos, action.payload],
       }
     default:
       return state

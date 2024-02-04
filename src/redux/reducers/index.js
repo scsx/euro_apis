@@ -6,7 +6,7 @@ import videosReducer from './videosReducer'
 const rootReducer = combineReducers({
   country: countryReducer,
   allCountries: allCountriesReducer,
-  videos: videosReducer
+  savedVideos: videosReducer
 })
 
 export default rootReducer
