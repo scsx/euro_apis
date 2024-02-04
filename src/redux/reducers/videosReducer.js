@@ -1,27 +1,8 @@
-import { SET_ALL_VIDEOS, UPDATE_INDIVIDUAL_VIDEO } from '../actions/actionTypes'
 
-const initialState = [
-  {
-    id: 1,
-    title: 'Barry Lyndon',
-    time: 0
-  },
-  {
-    id: 2,
-    title: 'Farewell to Europe',
-    time: 0
-  },
-  {
-    id: 3,
-    title: 'Ossessione',
-    time: 0
-  },
-  {
-    id: 4,
-    title: 'Vincere',
-    time: 0
-  }
-]
+import { SET_ALL_VIDEOS, UPDATE_INDIVIDUAL_VIDEO } from '../actions/actionTypes'
+import filmsData from '../../data/films.json'
+
+const initialState = filmsData.films
 
 const videosReducer = (state = initialState, action) => {
   switch (action.type) {

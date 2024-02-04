@@ -7,6 +7,10 @@ import {
 } from '../redux/actions/videoActions'
 import Page from '../components/Page'
 
+const VideoPlayer = () => {
+  
+}
+
 const VideoGallery = () => {
   const video1 = useRef()
   const state = useSelector((state) => state)
@@ -18,15 +22,15 @@ const VideoGallery = () => {
     console.log(Array.isArray(savedVideos))
   }
 
-  // Example of updating an individual video
+  // Updating one individual video
   const handleUpdateIndividualVideo = () => {
-    const updatedVideo = { id: 1, time: 30 } // Updated video object
+    const updatedVideo = { id: 1, time: 30 }
     dispatch(updateIndividualVideo(updatedVideo))
   }
 
   const videoPaused = () => {
     console.log('Video paused -> save to redux')
-    console.log(video1.current.getCurrentTime())
+    let currentTime = video1.current.getCurrentTime()
   }
 
   const videoStopped = () => {
@@ -67,14 +71,7 @@ const VideoGallery = () => {
           <div className='col-md-8'>
             <h2>Barry Lyndon, 1975</h2>
             <p>
-              Writer/producer/director Stanley Kubrick deliberately chose to
-              adapt one of Thackeray's more tedious novels, "The Luck of Barry
-              Lyndon," so the plot wouldn't unduly distract us from this
-              sumptuous baroque feast for the eyes and ears. Shot on location in
-              Ireland, England and Germany, this stunningly beautiful film has
-              been rated by the Village Voice, Sight & Sound and Time as one of
-              the greatest films ever made. Don't miss it. The chances of a film
-              this visually magnificent ever being made again are slim to none.
+              
             </p>
           </div>
         </div>
@@ -93,9 +90,7 @@ const VideoGallery = () => {
           <div className='col-md-8'>
             <h2>Farewell to Europe, 2016</h2>
             <p>
-              Stefan Zweig: Farewell To Europe tells the story of the Austrian
-              writer and his life in exile from 1936 to 1942. Zweig was one of
-              the most famous writers of his time.
+              
             </p>
           </div>
         </div>
@@ -114,10 +109,7 @@ const VideoGallery = () => {
           <div className='col-md-8'>
             <h2>Ossessione, 1943</h2>
             <p>
-              Ossessione or Obsession (in English) is a 1943 Italian film based
-              on the novel, The Postman Always Rings Twice, by James M. Cain.
-              Luchino Visconti’s first feature film, it is considered by many to
-              be the first Italian neorealist film.
+              
             </p>
           </div>
         </div>
@@ -136,11 +128,7 @@ const VideoGallery = () => {
           <div className='col-md-8'>
             <h2>Vincere, 2009</h2>
             <p>
-              The story of the descent into madness of Mussolini’s secret first
-              wife, Ida Dasler, who was seduced by his passion and vigour but
-              blind to the fascist dictator’s many flaws. A historical drama
-              with the passion, lyricism and tragedy of a classical Italian
-              opera.
+              
             </p>
           </div>
         </div>
