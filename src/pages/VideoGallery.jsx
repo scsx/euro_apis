@@ -7,47 +7,20 @@ import {
 } from '../redux/actions/videoActions'
 import Page from '../components/Page'
 
-const films = [
-  {
-    id: 1,
-    title: 'Barry Lyndon',
-    time: 0
-  },
-  {
-    id: 2,
-    title: 'Farewell to Europe',
-    time: 0
-  },
-  {
-    id: 3,
-    title: 'Ossessione',
-    time: 0
-  },
-  {
-    id: 4,
-    title: 'Vincere',
-    time: 0
-  }
-]
-
 const VideoGallery = () => {
   const video1 = useRef()
+  const state = useSelector((state) => state)
   const savedVideos = useSelector((state) => state.savedVideos)
   const dispatch = useDispatch()
 
   const getVideos = () => {
-    console.log(savedVideos)
-  }
-
-  // Setting videos.
-  const handleSetAllVideos = () => {
-    const allVideos = films
-    dispatch(setAllVideos(allVideos))
+    console.log(state)
+    console.log(Array.isArray(savedVideos))
   }
 
   // Example of updating an individual video
   const handleUpdateIndividualVideo = () => {
-    const updatedVideo = { title: 'Vincere', time: 30 } // Updated video object
+    const updatedVideo = { id: 1, time: 30 } // Updated video object
     dispatch(updateIndividualVideo(updatedVideo))
   }
 
@@ -65,13 +38,17 @@ const VideoGallery = () => {
       <h1 className='mb-5'>Videos</h1>
 
       <div>
-        <button onClick={handleSetAllVideos}>Set All Videos</button>
         <button onClick={handleUpdateIndividualVideo}>
           Update Individual Video
         </button>
       </div>
-
       <button onClick={getVideos}>get</button>
+
+      <ul>
+        {savedVideos.map((video) => (
+          <li key={video.title}>{`${video.title}: ${video.time} minutes`}</li>
+        ))}
+      </ul>
 
       <div className='container'>
         <div className='row mb-5'>
