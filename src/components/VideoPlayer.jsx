@@ -3,12 +3,13 @@ import ReactPlayer from 'react-player'
 import { calcPercentage } from '../utils/utils'
 import './VideoPlayer.scss'
 
-const VideoPlayer = forwardRef(({ video, videoPaused, videoStopped }, ref) => {
+const VideoPlayer = forwardRef(({ video, videoPaused }, ref) => {
   const [playedLength, setPlayedLength] = useState(0)
 
   const handleDuration = (duration) => {
     if (video.time > 0) {
       setPlayedLength(calcPercentage(duration, video.time))
+      ref.current?.seekTo(video.time, 'seconds')
     }
   }
 
@@ -31,7 +32,6 @@ const VideoPlayer = forwardRef(({ video, videoPaused, videoStopped }, ref) => {
           height='auto'
           muted={true}
           onPause={() => videoPaused(video, ref)}
-          onEnded={() => videoStopped(video, ref)}
           onDuration={handleDuration}
         />
         <div className='videoplayer__timebar'>
@@ -39,7 +39,6 @@ const VideoPlayer = forwardRef(({ video, videoPaused, videoStopped }, ref) => {
             className='videoplayer__timeplayed'
             style={{ width: `${playedLength}%` }}></div>
         </div>
-        <p>Time: {video.time}</p>
       </div>
       <div className='col-md-7'>
         <h2>{video.title}</h2>

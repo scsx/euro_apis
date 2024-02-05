@@ -12,14 +12,6 @@ const VideoGallery = () => {
   const dispatch = useDispatch()
   const childRefs = Array.from(savedVideos, () => useRef())
 
-  // Updating one individual video
-  /*
-  const handleUpdateIndividualVideo = () => {
-    const updatedVideo = { id: 1, time: 30 }
-    dispatch(updateIndividualVideo(updatedVideo))
-  }
-  */
-
   const videoPaused = (video, ref) => {
     console.log('Video paused -> save to redux')
     let currentTime = ref.current.getCurrentTime()
@@ -28,14 +20,6 @@ const VideoGallery = () => {
       time: currentTime
     }
     dispatch(updateIndividualVideo(updatedVideo))
-  }
-
-  const videoStopped = (video, ref) => {
-    console.log('Video stopped -> save to redux')
-  }
-
-  const continueVideo = (video, ref) => {
-    let currentTime = ref.current.getCurrentTime()
   }
 
   return (
@@ -48,7 +32,6 @@ const VideoGallery = () => {
             ref={ref}
             video={savedVideos[index]}
             videoPaused={() => videoPaused(savedVideos[index], ref)}
-            videoStopped={() => videoStopped(savedVideos[index], ref)}
           />
         ))}
       </div>
