@@ -1,0 +1,15 @@
+.videoplayer {
+  &__timebar {
+    position: relative;
+    margin-top: -7px;
+    height: 10px;
+    background-color: #d0cabe;
+  }
+  &__timeplayed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: red;
+  }
+}
