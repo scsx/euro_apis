@@ -58,3 +58,8 @@ export const getRandomColor = (opacity = false) => {
     rgba: `rgba(${red},${green},${blue},${opacity ? opacity : '0.5'})`
   }
 }
+
+// Get percentage
+export const calcPercentage = (total, part) => {
+  return ((part * 100) / total).toFixed()
+}

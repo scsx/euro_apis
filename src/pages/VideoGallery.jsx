@@ -23,17 +23,19 @@ const VideoGallery = () => {
   const videoPaused = (video, ref) => {
     console.log('Video paused -> save to redux')
     let currentTime = ref.current.getCurrentTime()
-
     let updatedVideo = {
       ...video,
       time: currentTime
     }
-
     dispatch(updateIndividualVideo(updatedVideo))
   }
 
   const videoStopped = (video, ref) => {
     console.log('Video stopped -> save to redux')
+  }
+
+  const continueVideo = (video, ref) => {
+    let currentTime = ref.current.getCurrentTime()
   }
 
   return (

@@ -1,10 +1,28 @@
-import { forwardRef } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
+import { calcPercentage } from '../utils/utils'
+import './VideoPlayer.scss'
 
 const VideoPlayer = forwardRef(({ video, videoPaused, videoStopped }, ref) => {
+  const [playedLength, setPlayedLength] = useState(0)
+
+  const handleDuration = (duration) => {
+    if (video.time > 0) {
+      setPlayedLength(calcPercentage(duration, video.time))
+    }
+  }
+
+  useEffect(() => {
+    if (video.time > 0) {
+      setPlayedLength(
+        calcPercentage(ref.current?.getDuration(), video.time || 0)
+      )
+    }
+  }, [video.time, ref])
+
   return (
-    <div className='row mb-5'>
-      <div className='col-md-4'>
+    <div className='row mb-5 videoplayer'>
+      <div className='col-md-5'>
         <ReactPlayer
           ref={ref}
           url={`/videos/${video.file}`}
@@ -14,10 +32,16 @@ const VideoPlayer = forwardRef(({ video, videoPaused, videoStopped }, ref) => {
           muted={true}
           onPause={() => videoPaused(video, ref)}
           onEnded={() => videoStopped(video, ref)}
+          onDuration={handleDuration}
         />
+        <div className='videoplayer__timebar'>
+          <div
+            className='videoplayer__timeplayed'
+            style={{ width: `${playedLength}%` }}></div>
+        </div>
         <p>Time: {video.time}</p>
       </div>
-      <div className='col-md-8'>
+      <div className='col-md-7'>
         <h2>{video.title}</h2>
         <p>{video.desc}</p>
       </div>
