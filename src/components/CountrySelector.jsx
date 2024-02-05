@@ -8,13 +8,10 @@ import { useLocation } from 'react-router-dom'
 import './CountrySelector.scss'
 
 const CountrySelector = () => {
-  // State actualmente:
-  // const state = useSelector((state) => state)
 
   const selectedCountry = useSelector((state) => state.country.selectedCountry)
   const dispatch = useDispatch()
   const countryList = useSelector((state) => state.allCountries.allCountries)
-  // const countryList = state.allCountries.allCountries
 
   const handleCountryChange = (code) => {
     const newCountry = code
