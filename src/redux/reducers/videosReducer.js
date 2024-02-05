@@ -1,4 +1,3 @@
-
 import { SET_ALL_VIDEOS, UPDATE_INDIVIDUAL_VIDEO } from '../actions/actionTypes'
 import filmsData from '../../data/films.json'
 
