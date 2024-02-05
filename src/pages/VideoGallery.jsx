@@ -21,11 +21,14 @@ const VideoGallery = () => {
   */
 
   const videoPaused = (video, ref) => {
-    let updatedVideo = video
     console.log('Video paused -> save to redux')
     let currentTime = ref.current.getCurrentTime()
-    
-    updatedVideo.time = currentTime
+
+    let updatedVideo = {
+      ...video,
+      time: currentTime
+    }
+
     dispatch(updateIndividualVideo(updatedVideo))
   }
 
