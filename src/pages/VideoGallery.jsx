@@ -24,7 +24,7 @@ const VideoGallery = () => {
 
   return (
     <Page classes='videogal'>
-      <h1 className='mb-5'>Videos</h1>
+      <h1 className='mb-5'>Video Gallery</h1>
       <div className='container'>
         {childRefs.map((ref, index) => (
           <VideoPlayer

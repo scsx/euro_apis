@@ -41,7 +41,7 @@ const VideoPlayer = forwardRef(({ video, videoPaused }, ref) => {
         </div>
       </div>
       <div className='col-md-7'>
-        <h2>{video.title}</h2>
+        <h2 className='videoplayer__title'>{video.title}</h2>
         <p>{video.desc}</p>
       </div>
     </div>

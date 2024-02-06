@@ -4,7 +4,8 @@
 
 - React + Vite
 - react-router-dom
-- react-redux
+- react-redux (persistent through localStorage)
+- react-player
 - chart.js & react-chartjs-2
 - prop-types
 - [https://restcountries.com/](https://restcountries.com/)

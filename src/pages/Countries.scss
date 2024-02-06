@@ -1,6 +1,22 @@
 @import '../styles/custom-vars';
 
 .page__countries {
+
+  .countrycodes {
+    display: flex;
+    align-items: start;
+    justify-content: end;
+
+    &__help {
+      display: inline-block;
+      margin: .5rem .75rem 0 0;
+    }
+
+    &__switch {
+      margin-top: -1rem;
+    }
+  }
+
   .countrieslist {
     width: 100%;
     display: flex;
@@ -29,6 +45,7 @@
 
     &__link {
       display: flex;
+      align-items: center;
     }
 
     &__linktext {
