@@ -40,7 +40,7 @@ const CountryComparison = ({
 
   return (
     <div className='comparison'>
-      <div className='text-right mb-4'>
+      <div className='text-right'>
         <Button variant='outline-primary' onClick={handleShow}>
           Compare{' '}
           <b>

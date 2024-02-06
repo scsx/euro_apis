@@ -5,7 +5,7 @@ const initialState = filmsData.films
 
 const videosReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_ALL_VIDEOS:
+    case SET_ALL_VIDEOS: // Not in use
       return action.payload // action.payload has to be an array
     case UPDATE_INDIVIDUAL_VIDEO:
       const updatedIndex = state.findIndex(

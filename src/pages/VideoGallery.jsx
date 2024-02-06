@@ -1,7 +1,6 @@
-import { useRef, forwardRef } from 'react'
+import { useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  setAllVideos,
   updateIndividualVideo
 } from '../redux/actions/videoActions'
 import Page from '../components/Page'
